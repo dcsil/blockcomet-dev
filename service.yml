@@ -1,0 +1,19 @@
+tools:
+  exceptions: https://sentry.io/dcsil-team-app/dcsil-team-app/
+  logging: https://service.us2.sumologic.com/ui/?appName=dcsil-team-app
+  ci: https://github.com/dcsil/team_app/actions
+
+services:
+  production: https://dcsil-team-app.herokuapp.com
+
+docs:
+  getting_started: https://github.com/dcsil/team_app
+  
+commands:
+  bootstrap: bin/bootstrap
+  database:
+    create: bin/rails db:create
+    migrate: bin/rails db:migrate
+    seed: bin/rails db:seed
+  server: overmind start
+  test: bin/rails test
