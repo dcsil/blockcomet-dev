@@ -119,5 +119,3 @@ if [ $? -eq 0 ]; then
 else
   install_yarn
 fi
-
-fi

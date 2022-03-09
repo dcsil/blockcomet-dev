@@ -9,7 +9,7 @@ echo "Installing Dependencies"
 
 # install dependencies for front-end 
 cd ../app/client/
-npm install 
+yarn install 
 
 # install dependencies for back-end 
 cd ../server 
