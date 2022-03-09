@@ -5,5 +5,13 @@ echo ${DIR}
 echo "==== System Dependencies ===================================================================================================="
 $DIR/dependencies
 
-echo ""
+echo "Installing Dependencies"
 
+# install dependencies for front-end 
+cd ../app/client/
+npm install 
+
+# install dependencies for back-end 
+cd ../server 
+echo "installing server dependencies"
+poetry install  
