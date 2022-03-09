@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+pwd 
+DIR="$(PWD)"
+echo ${DIR}
+echo "==== System Dependencies ===================================================================================================="
+$DIR/dependencies
+
+echo ""
+
