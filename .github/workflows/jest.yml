@@ -1,0 +1,13 @@
+name: CI
+on: push
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install modules
+      run: | 
+        cd app/client
+        yarn
+    - name: Run tests
+      run: yarn test
