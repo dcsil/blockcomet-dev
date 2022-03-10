@@ -5,7 +5,7 @@ echo ${DIR}
 
 # running system dependencies script found in bin/dependencies
 echo "==== System Dependencies ===================================================================================================="
-$DIR/dependencies
+$DIR/bin/dependencies
 
 echo "Installed Dependencies"
 
@@ -16,11 +16,11 @@ source $HOME/.bash_profile
 
 echo "Installing FE Dependencies"
 # install dependencies for front-end 
-cd $DIR/../app/client/
+cd $DIR/app/client/
 yarn install 
 
 echo "Installing BE Dependencies"
 # install dependencies for back-end 
-cd $DIR/../app/server 
+cd $DIR/app/server 
 echo "installing server dependencies"
 poetry install
