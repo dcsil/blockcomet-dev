@@ -1,5 +1,5 @@
 # set base image (host OS)
-FROM python:3.6.14
+FROM python:3.9.2
 
 # set the working directory in the container
 WORKDIR /server 
