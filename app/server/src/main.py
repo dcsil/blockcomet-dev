@@ -3,6 +3,12 @@ from bigchaindb_driver import BigchainDB
 from bigchaindb_driver.crypto import generate_keypair
 import json
 import sentry_sdk
+import pymongo
+from pymongo import MongoClient
+
+cluster = MongoClient("mongodb+srv://admin:blockcomet@cluster0.yk74s.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+db = cluster["blockcomet_users"]
+collection = db["users"]
 
 sentry_sdk.init(
     "https://9b3d81b382e74643a9647070e5092443@o358880.ingest.sentry.io/6146694",
