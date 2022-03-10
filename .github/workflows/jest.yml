@@ -5,9 +5,20 @@ jobs:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v2
-    - name: Install modules
-      run: | 
-        cd app/client
-        yarn
-    - name: Run tests
-      run: yarn test
+    
+    - name: cd into client directory
+      run: cd app/client
+
+    - uses: borales/actions-yarn@v2.3.0
+      with:
+        cmd: install # will run `yarn install` command
+
+    - uses: borales/actions-yarn@v2.3.0
+      with:
+        cmd: test # will run `yarn test` command
+    # - name: Install modules
+    #   run: | 
+    #     cd app/client
+    #     yarn
+    # - name: Run tests
+    #   run: yarn test
