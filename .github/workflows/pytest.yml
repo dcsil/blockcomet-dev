@@ -21,7 +21,7 @@ jobs:
       - name: Install Dependencies
         run: | 
           cd app/server
-          export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/python3.6
+          poetry shell
           poetry install
 
       - name: Test with pytest
