@@ -22,6 +22,7 @@ jobs:
         run: |
           cd app/server
           pwd
+          poetry config --list
 
       - name: Check python versions
         run: |
