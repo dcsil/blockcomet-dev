@@ -6,7 +6,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install Yarn
-      run: npm install -g yarn
+      run: |
+      cd app/client
+      npm install -g yarn
     - name: Install modules
       run: yarn
     - name: Run tests
