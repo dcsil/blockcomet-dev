@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 pwd 
-DIR="$(PWD)"
+DIR="$(pwd)"
 echo ${DIR}
 echo "==== System Dependencies ===================================================================================================="
-$DIR/dependencies
+$DIR/bin/dependencies
 
 echo "Installing Dependencies"
 
 # install dependencies for front-end 
-cd ../app/client/
+cd $DIR/app/client/
 yarn install 
 
 # install dependencies for back-end 
-cd ../server 
+cd $DIR/app/server 
 echo "installing server dependencies"
 poetry install  
