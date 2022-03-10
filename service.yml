@@ -1,6 +1,6 @@
 tools:
   exceptions: https://sentry.io/organizations/dcsil/issues/?project=6146694
-  logging: 
+  logging: https://app.logdna.com/cd5f2396bc/logs/view
   ci: https://github.com/dcsil/blockcomet-dev/actions
 
 services:
@@ -13,3 +13,5 @@ commands:
   bootstrap: bin/bootstrap
   server: app/server/setup_server
   webapp: app/client/start_app
+  database: https://cloud.mongodb.com/v2/6229cfaf4efbde230c214e23#metrics/replicaSet/6229d0e1f0bcbd1bf33b7cd0/explorer/blockcomet_users
+  test: bin/test
