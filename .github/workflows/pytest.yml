@@ -43,7 +43,7 @@ jobs:
         id: setup-python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.6
+          python-version: 3.7.5
       #----------------------------------------------
       #  -----  install & configure poetry  -----
       #----------------------------------------------
@@ -70,13 +70,8 @@ jobs:
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: |
           cd app/server
-          export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/python3.6
+          export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/python3.7.5
           poetry install --no-interaction --no-root
-      #----------------------------------------------
-      # install your root project, if required
-      #----------------------------------------------
-      - name: Install library
-        run: poetry install --no-interaction
       #----------------------------------------------
       #              run test suite
       #----------------------------------------------
