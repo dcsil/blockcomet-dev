@@ -15,19 +15,24 @@ jobs:
         with:
           python-version: '3.8.10' 
           
-      - name: Install Poetry
+      - name: Install and configure Poetry
         uses: snok/install-poetry@v1
+        with:
+          version: 1.1.10
+          virtualenvs-create: false
+          virtualenvs-in-project: false
+          installer-parallel: true
 
       - name: cd into server
         run: |
           cd app/server
           pwd
+          poetry config --list
 
       - name: Check python versions
         run: |
           pwd
           python --version
-          "/home/actions/.local/venv/bin/python" --version
 
       - name: Turning off virtualenv
         run: |
@@ -40,4 +45,6 @@ jobs:
           poetry install
 
       - name: Test with pytest
-        run: poetry run pytest
+        run: |
+          cd app/server
+          poetry run pytest
