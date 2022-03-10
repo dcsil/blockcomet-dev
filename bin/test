@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+pwd 
+DIR="$(pwd)"
+echo ${DIR}
+
+echo "Running frontend tests"
+cd $DIR/app/client/
+yarn test
+
+echo "Running backend tests"
+cd $DIR/../server/
+poetry run pytest
