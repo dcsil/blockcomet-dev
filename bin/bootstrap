@@ -23,4 +23,5 @@ echo "Installing BE Dependencies"
 # install dependencies for back-end 
 cd $DIR/app/server 
 echo "installing server dependencies"
+poetry config virtualenvs.create false
 poetry install
