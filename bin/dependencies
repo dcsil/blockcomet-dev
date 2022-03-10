@@ -93,8 +93,7 @@ command -v poetry > /dev/null 2>&1
 if [ $? -eq 0 ]; then
   echo "poetry already installed"
 else
-cmd=$(curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -)
-echo ${cmd}
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -
 fi
 
 command -v yarn > /dev/null 2>&1
