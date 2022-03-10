@@ -16,7 +16,8 @@ jobs:
       - checkout
       - run: pwd 
       - run: ls
-      - run: cd ./app/server 
+      - run: cd app/server/ 
+      - run: ls
       - run: pip install poetry 
       - run: poetry config virtualenvs.create false
       - run: poetry install
