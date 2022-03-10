@@ -7,7 +7,7 @@ Instructions for Mac, Windows, Linux
 - [Docker](https://docs.docker.com/get-docker/)
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-### Installation and Usage
+### Installation and Usage (Local Development)
 1\. Clone this [repository](https://github.com/dcsil/blockcomet-dev)
 
 ```
@@ -15,21 +15,35 @@ git clone https://github.com/dcsil/blockcomet-dev
 ```
 
 
-2\. Build a new docker container image (Ensure you are in the root folder)
+2\. Run bin/bootstrap (Ensure you are in the root folder)             
 
+This should install the languages and front & backend dependencies 
 ```
-docker build -t blockComet ./
+./bin/bootstrap
 ```
 
-3\. Run the docker container
+3\. Go to app/client and run the start_app script 
+
+https://localhost:3001 should have the web app
 ```
-docker run blockComet
+./app/client/start_app
+```
+4\. Go to app/server and run the following commands: 
+```
+poetry shell
+poetry install 
+poetry run python ./src/main.py
 ```
 
 #### (Optional) Running tests
 Without coverage
+1. webapp tests (Ensure inside client folder):
 ```
-docker run blockComet yarn run test
+yarn test
+```
+2. server tests (Ensure inside server folder):
+```
+poetry run pytest
 ```
 ## Resources
 [BlockComet - Google Drive](https://drive.google.com/drive/folders/1Y2Rrer1_6Pn5j8HI7jxWZaM5FnN1wZ13)
