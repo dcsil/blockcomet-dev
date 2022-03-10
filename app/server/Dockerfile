@@ -20,4 +20,4 @@ RUN poetry install
 COPY . .
 
 # command to run on container start
-CMD [ "python", "./main.py" ]
+CMD [ "python", "./src/main.py" ]
