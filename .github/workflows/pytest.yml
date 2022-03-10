@@ -13,21 +13,26 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.10' 
+          python-version: '3.6' 
           
       - name: Install Poetry
         uses: snok/install-poetry@v1
 
       - name: cd into server
-        run: cd app/server
-
-      - name: Turning off virtualenv
-        run: poetry config virtualenvs.create false
+        run: |
+        cd app/server
+        pwd
 
       - name: Check python versions
         run: |
+          pwd
           python --version
           "/home/actions/.local/venv/bin/python" --version
+
+      - name: Turning off virtualenv
+        run: |
+          pwd
+          poetry config virtualenvs.create false
 
       - name: Install Dependencies
         run: |
