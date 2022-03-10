@@ -2,23 +2,12 @@ name: CI
 on: push
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    
-    - name: cd into client directory
-      run: cd app/client
-
-    - uses: borales/actions-yarn@v2.3.0
-      with:
-        cmd: install # will run `yarn install` command
-
-    - uses: borales/actions-yarn@v2.3.0
-      with:
-        cmd: test # will run `yarn test` command
-    # - name: Install modules
-    #   run: | 
-    #     cd app/client
-    #     yarn
-    # - name: Run tests
-    #   run: yarn test
+    - name: Install Yarn
+      run: npm install -g yarn
+    - name: Install modules
+      run: yarn
+    - name: Run tests
+      run: yarn test

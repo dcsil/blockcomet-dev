@@ -70,6 +70,7 @@ jobs:
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: |
           cd app/server
+          export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/python3.7.5
           poetry install --no-interaction --no-root
       #----------------------------------------------
       #              run test suite
