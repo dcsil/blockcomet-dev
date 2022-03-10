@@ -36,7 +36,11 @@ poetry run python ./src/main.py
 ```
 
 #### (Optional) Running tests
-Without coverage
+For all tests:
+``` 
+bin/test
+```
+
 1. webapp tests (Ensure inside client folder):
 ```
 yarn test
@@ -45,5 +49,6 @@ yarn test
 ```
 poetry run pytest
 ```
+
 ## Resources
 [BlockComet - Google Drive](https://drive.google.com/drive/folders/1Y2Rrer1_6Pn5j8HI7jxWZaM5FnN1wZ13)
