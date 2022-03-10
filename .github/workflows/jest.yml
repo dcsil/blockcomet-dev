@@ -10,6 +10,10 @@ jobs:
         cd app/client
         npm install -g yarn
     - name: Install modules
-      run: yarn
+      run: |
+        cd app/client
+        yarn
     - name: Run tests
-      run: yarn test
+      run: |
+        cd app/client
+        yarn test
