@@ -1,13 +1,13 @@
 tools:
-  exceptions: https://sentry.io/dcsil-team-app/dcsil-team-app/
+  exceptions: https://sentry.io/organizations/dcsil/issues/?project=6146694
   logging: https://service.us2.sumologic.com/ui/?appName=dcsil-team-app
-  ci: https://github.com/dcsil/team_app/actions
+  ci: https://github.com/dcsil/blockcomet-dev/actions
 
 services:
   production: https://dcsil-team-app.herokuapp.com
 
 docs:
-  getting_started: https://github.com/dcsil/team_app
+  getting_started: ./README
   
 commands:
   bootstrap: bin/bootstrap
