@@ -24,8 +24,15 @@ jobs:
       - name: Turning off virtualenv
         run: poetry config virtualenvs.create false
 
+      - name: Check python versions
+        run: |
+          python --version
+          "/home/actions/.local/venv/bin/python" --version
+
       - name: Install Dependencies
-        run: poetry install
+        run: |
+          cd app/server
+          poetry install
 
       - name: Test with pytest
         run: poetry run pytest
