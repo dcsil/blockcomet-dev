@@ -36,9 +36,9 @@ poetry run python ./src/main.py
 ```
 
 #### (Optional) Running tests
-For all tests:
+For all tests (From root folder):
 ``` 
-bin/test
+./bin/test
 ```
 
 1. webapp tests (Ensure inside client folder):
