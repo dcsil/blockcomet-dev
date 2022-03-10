@@ -6,7 +6,8 @@ echo "==== System Dependencies =================================================
 $DIR/bin/dependencies
 
 echo "Installing Dependencies"
-
+source $HOME/.bashrc
+source $HOME/.profile
 # install dependencies for front-end 
 cd $DIR/app/client/
 yarn install 
@@ -14,4 +15,4 @@ yarn install
 # install dependencies for back-end 
 cd $DIR/app/server 
 echo "installing server dependencies"
-poetry install  
+poetry install
