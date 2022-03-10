@@ -8,5 +8,5 @@ cd $DIR/app/client/
 yarn test
 
 echo "Running backend tests"
-cd $DIR/../server/
+cd ../server/
 poetry run pytest
