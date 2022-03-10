@@ -1,7 +1,17 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from bigchaindb_driver import BigchainDB
 from bigchaindb_driver.crypto import generate_keypair
 import json
+import sentry_sdk
+
+sentry_sdk.init(
+    "https://9b3d81b382e74643a9647070e5092443@o358880.ingest.sentry.io/6146694",
+
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0,
+)
 app = FastAPI()
 
 bdb_root_url = 'https://test.ipdb.io' 
@@ -43,6 +53,22 @@ def send_transaction():
     print("Block Info: ", json.dumps(block, indent=1))
 
 send_transaction()
+
+@app.middleware("http")
+async def sentry_exception(request: Request, call_next):
+    try:
+        response = await call_next(request)
+        return response
+    except Exception as e:
+        with sentry_sdk.push_scope() as scope:
+            scope.set_context("request", request)
+            user_id = "database_user_id" # when available
+            scope.user = {
+                "ip_address": request.client.host,
+                "id": user_id
+            }
+            sentry_sdk.capture_exception(e)
+        raise e
 
 @app.get("/")
 def read_root():

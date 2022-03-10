@@ -1,0 +1,19 @@
+tools:
+  exceptions: https://sentry.io/organizations/dcsil/issues/?project=6146694
+  logging: https://service.us2.sumologic.com/ui/?appName=dcsil-team-app
+  ci: https://github.com/dcsil/blockcomet-dev/actions
+
+services:
+  production: https://dcsil-team-app.herokuapp.com
+
+docs:
+  getting_started: ./README
+  
+commands:
+  bootstrap: bin/bootstrap
+  database:
+    create: bin/rails db:create
+    migrate: bin/rails db:migrate
+    seed: bin/rails db:seed
+  server: overmind start
+  test: bin/rails test

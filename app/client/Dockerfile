@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:17
 
 WORKDIR /app
 
@@ -9,4 +9,5 @@ RUN yarn install
 COPY . /app
 
 CMD ["yarn", "start"]
+
 

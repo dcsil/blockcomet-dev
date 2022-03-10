@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+pwd 
+DIR="$(pwd)"
+echo ${DIR}
+
+# running system dependencies script found in bin/dependencies
+echo "==== System Dependencies ===================================================================================================="
+$DIR/dependencies
+
+echo "Installed Dependencies"
+
+echo "Adding paths to profile"
+source $HOME/.bashrc
+source $HOME/.profile
+source $HOME/.bash_profile
+
+echo "Installing FE Dependencies"
+# install dependencies for front-end 
+cd $DIR/../app/client/
+yarn install 
+
+echo "Installing BE Dependencies"
+# install dependencies for back-end 
+cd $DIR/../app/server 
+echo "installing server dependencies"
+poetry install
