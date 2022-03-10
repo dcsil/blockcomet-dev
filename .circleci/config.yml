@@ -16,8 +16,10 @@ jobs:
       - checkout
       - run: pwd 
       - run: ls
-      - run: cd $(pwd)/app
-      - run: pwd
+      - run: cd ./app/server 
+      - run: pip install poetry 
+      - run: poetry config virtualenvs.create false
+      - run: poetry install
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
