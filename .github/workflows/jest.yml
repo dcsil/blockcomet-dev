@@ -37,8 +37,10 @@ jobs:
       - name: Setup yarn
         run: npm install -g yarn
 
-      - name: Install dependencies
-        run: yarn
+      - name: Install modules
+        run: |
+          cd app/client
+          yarn
       - name: Run tests
         run: |
           cd app/client
