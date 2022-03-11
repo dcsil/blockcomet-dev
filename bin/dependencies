@@ -40,10 +40,10 @@ install_node() {
 install_python() {
   echo "Installing Python"
   if [ "$(uname)" == "Darwin" ]; then
-    brew install python3.6 
+    brew install python3
   else
     sudo apt-get update
-    sudo apt-get install python3.6  
+    sudo apt-get install python3
   fi
 }
 
@@ -101,4 +101,18 @@ if [ $? -eq 0 ]; then
   echo "yarn already installed"
 else
   install_yarn
+fi
+
+if [ ! -f /usr/bin/mongod ]; then
+  echo "Installing MongoDB"
+  if [ "$(uname)" == "Darwin" ]; then
+    brew tap mongodb/brew
+    brew install mongodb-community@5.0
+  else
+    sudo apt-get install gnupg
+    wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
+    echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/5.0 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+    sudo apt-get update
+    sudo apt-get install -y mongodb-org
+  fi
 fi

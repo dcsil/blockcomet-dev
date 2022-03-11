@@ -13,5 +13,5 @@ commands:
   bootstrap: bin/bootstrap
   server: app/server/setup_server
   webapp: app/client/start_app
-  database: https://cloud.mongodb.com/v2/6229cfaf4efbde230c214e23#metrics/replicaSet/6229d0e1f0bcbd1bf33b7cd0/explorer/blockcomet_users
+  database: bin/mongodb
   test: bin/test
