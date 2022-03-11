@@ -39,3 +39,7 @@ jobs:
 
       - name: Install dependencies
         run: yarn
+      - name: Run tests
+        run: |
+          cd app/client
+          yarn test
