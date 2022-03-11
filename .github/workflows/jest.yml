@@ -23,7 +23,7 @@ on: push
 #         yarn test
 
 jobs:
-  node-ci:
+  build:
     runs-on: self-hosted
     timeout-minutes: 20
     steps:
