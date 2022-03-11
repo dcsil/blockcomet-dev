@@ -1,6 +1,6 @@
 tools:
   exceptions: https://sentry.io/organizations/dcsil/issues/?project=6146694
-  logging: https://app.logdna.com/cd5f2396bc/logs/view
+  logging: https://service.us2.sumologic.com/ui/?appName=blockcomet-dev
   ci: https://github.com/dcsil/blockcomet-dev/actions
 
 services:
