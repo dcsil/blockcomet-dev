@@ -3,7 +3,18 @@ from bigchaindb_driver import BigchainDB
 from bigchaindb_driver.crypto import generate_keypair
 import json
 import sentry_sdk
+import pymongo
+from pymongo import MongoClient
 
+# Connecting to our mongoDB instance in cloud
+cluster = MongoClient('mongodb+srv://admin:blockcomet@cluster0.yk74s.mongodb.net/blockcomet_users?retryWrites=true&w=majority')
+db = cluster["blockcomet_users"]
+collection = db["users"]
+
+# post = {"_id": 0, "username": "test_user"}
+# collection.insert_one(post)
+
+# Connecting to Sentry 
 sentry_sdk.init(
     "https://9b3d81b382e74643a9647070e5092443@o358880.ingest.sentry.io/6146694",
 
@@ -12,8 +23,10 @@ sentry_sdk.init(
     # We recommend adjusting this value in production.
     traces_sample_rate=1.0,
 )
+
 app = FastAPI()
 
+# Connecting to bigchainDB test network 
 bdb_root_url = 'https://test.ipdb.io' 
 bdb = BigchainDB(bdb_root_url)
 
