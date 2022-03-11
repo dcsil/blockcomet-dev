@@ -25,3 +25,5 @@ cd $DIR/app/server
 echo "installing server dependencies"
 poetry config virtualenvs.create false
 poetry install
+
+echo "############Installation Complete################"
