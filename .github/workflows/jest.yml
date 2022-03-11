@@ -13,7 +13,7 @@ jobs:
     - name: Install Yarn
       run: |
         cd app/client
-        npm install -g yarn
+        sudo npm install -g yarn
     - name: Install modules
       run: |
         cd app/client
