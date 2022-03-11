@@ -1,5 +1,5 @@
-# name: Jest
-# on: push
+name: Jest
+on: push
 # jobs:
 #   build:
 #     runs-on: self-hosted
