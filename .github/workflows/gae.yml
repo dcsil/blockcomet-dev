@@ -1,4 +1,4 @@
-name: Deploy to Google Cloud
+name: Deploy Backend to Google Cloud
 
 # Controls when the workflow will run
 on: push

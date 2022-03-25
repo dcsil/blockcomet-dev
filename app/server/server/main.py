@@ -90,4 +90,4 @@ async def sentry_exception(request: Request, call_next):
 
 @app.get("/")
 def read_root():
-    return {"Welcome to": "BlockComet"}
+    return {"Welcome to": "Blockcomet"}
