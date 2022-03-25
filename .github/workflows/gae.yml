@@ -6,7 +6,7 @@ on: push
 jobs:
   deploy:
     name: Deploying to Google Cloud
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     
     steps:
     - name: Checkout
