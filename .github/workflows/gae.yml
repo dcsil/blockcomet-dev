@@ -1,4 +1,4 @@
-name: Deploy to GAE
+name: Deploy to Google Cloud
 
 # Controls when the workflow will run
 on: push
