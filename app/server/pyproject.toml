@@ -11,6 +11,7 @@ bigchaindb-driver = "^0.6.2"
 sentry-sdk = "^1.5.7"
 pytest = "^7.0.1"
 pymongo = {extras = ["srv"], version = "^4.0.2"}
+uvicorn = "^0.17.6"
 
 [tool.poetry.dev-dependencies]
 
