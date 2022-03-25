@@ -17,4 +17,4 @@ jobs:
           version: master
           credentials: ${{secrets.GCP_SA_KEY}}
           flags: --no-cache
-          deliverables: app.yaml
+          deliverables: app/server/app.yaml
