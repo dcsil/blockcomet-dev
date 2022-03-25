@@ -21,6 +21,10 @@ jobs:
     - id: 'deploy'
       uses: 'google-github-actions/deploy-appengine@v0'
     
+    - name: cd into server
+        run: |
+          cd app/server
+          
     - name: 'Deploy to App Engine'
       uses: 'google-github-actions/deploy-appengine@v0'
       with:
