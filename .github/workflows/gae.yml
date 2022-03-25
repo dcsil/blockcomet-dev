@@ -17,9 +17,6 @@ jobs:
       with:
         project_id: '${{ secrets.GCP_PROJECT }}'
         credentials_json: '${{ secrets.GCP_SA_KEY }}'
-
-    - id: 'deploy'
-      uses: 'google-github-actions/deploy-appengine@v0'
     
     - name: 'Deploy to App Engine'
       uses: 'google-github-actions/deploy-appengine@v0'
