@@ -25,6 +25,6 @@ jobs:
       uses: 'google-github-actions/deploy-appengine@v0'
       with:
         deliverables: 'server/app.yaml'
-        working_directory: ${{ github.workspace }}/server/
+        # working_directory: ${{ github.workspace }}/server/
         promote: false
         version: 'v1'
