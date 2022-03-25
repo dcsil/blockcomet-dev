@@ -3,13 +3,14 @@ name: Deploy to Google Cloud
 # Controls when the workflow will run
 on: push
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
-- id: 'auth'
-  uses: 'google-github-actions/auth@v0'
-  with:
-    project_id: '${{ secrets.GCP_PROJECT }}'
-    credentials_json: '${{ secrets.GCP_SA_KEY }}'
+jobs:
+  - id: 'auth'
+    uses: 'google-github-actions/auth@v0'
+    with:
+      project_id: '${{ secrets.GCP_PROJECT }}'
+      credentials_json: '${{ secrets.GCP_SA_KEY }}'
 
-- name: 'Deploy to App Engine'
-  uses: 'google-github-actions/deploy-appengine@v0'
-  with:
-    deliverables: 'app/server/app.yaml'
+  - name: 'Deploy to App Engine'
+    uses: 'google-github-actions/deploy-appengine@v0'
+    with:
+      deliverables: 'app/server/app.yaml'
