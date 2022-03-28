@@ -19,12 +19,12 @@ test("search bar exists", () => {
   const { getByTestId  } = render(
     <App/>
   );
-  expect(getByTestId("logo")).toBeTruthy();
+  expect(getByTestId("search-bar")).toBeTruthy();
 });
 
 test("validate button exists", () => {
   const { getByTestId  } = render(
     <App/>
   );
-  expect(getByTestId("logo")).toBeTruthy();
+  expect(getByTestId("search-btn")).toBeTruthy();
 });
