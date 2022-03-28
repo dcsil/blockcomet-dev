@@ -1,14 +1,14 @@
 import { Form, Container, Row, Col, Button } from 'react-bootstrap';
 import './App.css';
 import {useState} from 'react' 
-import logo from './blockcomet_logo_no_name.png';
+import logo from './assets/blockcomet_logo_no_name.png';
 
 function App() {
   const [productName, setProductName] = useState('')
   const [manufacturerName, setManufacturerName] = useState('')
   const [productDetails, setProductDetails] = useState('')
   const SEARCH_PLACEHOLDER = "Enter Product ID"
-  
+
     return (
         <div className="App">        
           <Container>
