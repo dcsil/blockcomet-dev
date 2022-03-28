@@ -4,7 +4,8 @@ tools:
   ci: https://github.com/dcsil/blockcomet-dev/actions
 
 services:
-  production: https://blockcomet-dev.herokuapp.com/
+  production: https://blockcomet.nn.r.appspot.com/
+  production_server: https://blockcometapi-6dkam7pfeq-uc.a.run.app/ 
 
 docs:
   getting_started: https://github.com/dcsil/blockcomet-dev/blob/main/README.md

@@ -1,5 +1,5 @@
 import pytest
-from src.main import *
+from server.main import *
 
 def test_read_root():
-    assert read_root() == {"Hello": "World"}
+    assert read_root() == {"Welcome to": "Blockcomet"}

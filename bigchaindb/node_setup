@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+echo "Pulling latest version of BigChainDB Docker Image"
+
+docker pull bigchaindb/bigchaindb:all-in-one
+
+echo "Running BigChainDB node"
+
+docker run \
+  --detach \
+  --name bigchaindb \
+  --publish 9984:9984 \
+  --publish 9985:9985 \
+  --publish 27017:27017 \
+  --publish 26657:26657 \
+  --volume $HOME/bigchaindb_docker/mongodb/data/db:/data/db \
+  --volume $HOME/bigchaindb_docker/mongodb/data/configdb:/data/configdb \
+  --volume $HOME/bigchaindb_docker/tendermint:/tendermint \
+  bigchaindb/bigchaindb:all-in-one
+
+  echo "Verifying that docker image ran: "
+  docker ps | grep bigchaindb
+  
