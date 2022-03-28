@@ -1,29 +1,28 @@
-import logo from './blockcomet_logo_no_name.png';
 import { Form, Container, Row, Col, Button } from 'react-bootstrap';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 import {useState} from 'react' 
+import logo from './blockcomet_logo_no_name.png';
+
 function App() {
   const [productName, setProductName] = useState('')
   const [manufacturerName, setManufacturerName] = useState('')
   const [productDetails, setProductDetails] = useState('')
-
+  const SEARCH_PLACEHOLDER = "Enter Product ID"
+  
     return (
         <div className="App">        
           <Container>
             <Row className="align-items-center">
               <Col className="align-items-right">
-                <img src={logo} className="logo-img" alt="logo" />
+                <img src={logo} className="logo-img" alt="logo" data-testid="logo"/>
               </Col>
               <Col>
-                {/* <input type="text" className="searchTerm" placeholder="Enter Product ID"/> */}
                 <Form>
-                <Form.Control className="search-bar" size="lg" type="text" placeholder="Enter Product ID"/>
+                <Form.Control className="search-bar" size="lg" type="text" data-testid="search-bar" placeholder={SEARCH_PLACEHOLDER}/>
                 </Form>
               </Col>
               <Col> 
-                <Button className="search-btn" variant="primary" size="lg"> Validate </Button>
+                <Button className="search-btn" variant="primary" size="lg" data-testid="search-btn">  Validate </Button>
               </Col>
             </Row>
           </Container>
