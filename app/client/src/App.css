@@ -1,52 +1,72 @@
-.App {
-  text-align: center;
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+body {
+  background-color: #f2f2f2;
+  font-family: Montserrat;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App{
+  margin-top: 20%;
 }
 
-.App-input {
-  color: black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.searchTerm {
+  width: 100%;
+  padding: 12px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #ffffff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+.logo-img {
+  height: 150px;
+  width: 150px; 
+  margin-left: 60%;
+  margin-top: -10%;
 }
 
-.example-btn {
-  background-color: #e7e7e7; 
-  color: black;
+.searchButton {
+  background-color: #ddbe7d; 
   border: none;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+  color: white;
+  padding: 20px;
   font-size: 16px;
-  margin: 4px 2px;
   cursor: pointer;
+  border-radius: 2px;
+} 
+
+.search-bar {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  background-color: transparent;
 }
 
-.App-link {
-  color: #61dafb;
+.search-bar:hover {
+  background-color: transparent;
+  outline: none;
+  border: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search-bar:active {
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+.search-bar:focus {
+  background-color: transparent;
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.search-btn {
+  margin-left: -6%;
+  background-color: #ddbe7d; 
+  border: none;
+} 
+
+.search-btn:hover {
+  background-color: #000; 
 }
