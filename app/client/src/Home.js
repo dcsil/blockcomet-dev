@@ -3,16 +3,16 @@ import './App.css';
 import { useState } from 'react'
 import logo from './assets/blockcomet_logo_no_name.png';
 import { Route, Link, BrowserRouter as Router, Routes } from "react-router-dom";
-import AdminLogin from "./AdminLogin"
 import { BsPlayCircle } from "react-icons/bs";
 
 function Home() {
     const [productID, setProductID] = useState('')
     const SEARCH_PLACEHOLDER = "Enter Product ID"
-
+    const validateString = "Validate"
+    const adminLoginString = "Admin Login"
     return (
         <div className="Home">
-            <Container>
+            <Container className="home-container">
                 <Row className="align-items-center">
                     <Col className="align-items-right">
                         <img src={logo} className="logo-img" alt="logo" data-testid="logo" />
@@ -23,10 +23,12 @@ function Home() {
                         </Form>
                     </Col>
                     <Col>
-                        <Link to="/login"> <Button className="search-btn" variant="primary" size="lg" data-testid="search-btn"> Validate </Button> </Link>
+                        <Button className="search-btn" variant="primary" size="lg" data-testid="search-btn"> {validateString} </Button>
                     </Col>
                 </Row>
-                {/* <Link to="/login"> <Button className="search-btn" variant="primary" size="lg" data-testid="search-btn"> Admin Login <BsPlayCircle /> </Button> </Link> */}
+                <div className="login-btn" data-testid="login-btn-container">
+                    <Link to="/login"> <Button className="login-btn-txt" variant="primary" size="lg" data-testid="login-btn"> {adminLoginString} <BsPlayCircle /> </Button> </Link>
+                </div>
             </Container>
 
         </div>
