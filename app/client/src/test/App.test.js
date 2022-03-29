@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from '../App';
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -33,5 +33,6 @@ test("admin login button exists", () => {
   const { getByTestId } = render(
     <App />
   );
-  expect(getByTestId("login-btn")).toBeTruthy();
+  const adminLoginButton = screen.getByTestId('admin-login-btn')
+  expect(adminLoginButton).toBeTruthy()
 });

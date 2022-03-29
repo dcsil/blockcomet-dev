@@ -26,8 +26,8 @@ function Home() {
                         <Button className="search-btn" variant="primary" size="lg" data-testid="search-btn"> {validateString} </Button>
                     </Col>
                 </Row>
-                <div className="login-btn" data-testid="login-btn-container">
-                    <Link to="/login"> <Button className="login-btn-txt" variant="primary" size="lg" data-testid="login-btn"> {adminLoginString} <BsPlayCircle /> </Button> </Link>
+                <div className="login-btn" data-testid="admin-login-btn-container">
+                    <Link to="/login"> <Button className="login-btn-txt" variant="primary" size="lg" data-testid="admin-login-btn"> {adminLoginString} <BsPlayCircle /> </Button> </Link>
                 </div>
             </Container>
 

@@ -11,7 +11,7 @@ function AdminLogin() {
     const SEARCH_PLACEHOLDER = "Enter Product ID"
 
     return (
-        <div className="AdminLogin">
+        <div className="AdminLogin" data-testid="admin-login-container">
             <Container>
                 <Row className="align-items-center">
                     <Col className="align-items-right">
@@ -19,12 +19,12 @@ function AdminLogin() {
                     </Col>
                     <Col>
                         <Form>
-                            <Form.Control className="search-bar" size="lg" type="text" data-testid="search-bar" placeholder="email" />
-                            <Form.Control className="search-bar" size="lg" type="text" data-testid="search-bar" placeholder="password" />
+                            <Form.Control className="search-bar" size="lg" type="text" data-testid="email-bar" placeholder="Email" />
+                            <Form.Control className="search-bar" size="lg" type="text" data-testid="password-bar" placeholder="Password" />
                         </Form>
                     </Col>
                     <Col>
-                        <Button className="search-btn" variant="primary" size="lg" data-testid="search-btn"> Login </Button>
+                        <Button className="search-btn" variant="primary" size="lg" data-testid="login-btn"> Login </Button>
                     </Col>
                 </Row>
             </Container>
