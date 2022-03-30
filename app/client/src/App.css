@@ -92,3 +92,8 @@ body {
 .search-btn:hover {
   background-color: #000; 
 }
+
+.AdminLogin {
+  display: flex;
+  flex-direction: column;
+}

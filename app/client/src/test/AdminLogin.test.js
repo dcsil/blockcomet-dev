@@ -18,7 +18,7 @@ test("admin login page renders", () => {
     const adminLoginPage = screen.getByTestId('admin-login-container')
     expect(adminLoginPage).toBeTruthy()
 
-    expect(getByTestId("email-bar")).toBeTruthy();
+    expect(getByTestId("username-bar")).toBeTruthy();
     expect(getByTestId("password-bar")).toBeTruthy();
     expect(getByTestId("login-btn")).toBeTruthy();
 });

@@ -19,7 +19,7 @@ function AdminLogin() {
                     </Col>
                     <Col>
                         <Form>
-                            <Form.Control className="search-bar" size="lg" type="text" data-testid="email-bar" placeholder="Email" />
+                            <Form.Control className="search-bar" size="lg" type="text" data-testid="username-bar" placeholder="Username" />
                             <Form.Control className="search-bar" size="lg" type="text" data-testid="password-bar" placeholder="Password" />
                         </Form>
                     </Col>
