@@ -1,5 +1,5 @@
 import { Form, Container, Row, Col, Button } from 'react-bootstrap';
-import './App.css';
+import './css/App.css';
 import { useState } from 'react'
 import logo from './assets/blockcomet_logo_no_name.png';
 import { Route, Link, BrowserRouter as Router, Routes } from "react-router-dom";
@@ -26,8 +26,8 @@ function Home() {
                         <Button className="search-btn" variant="primary" size="lg" data-testid="search-btn"> {validateString} </Button>
                     </Col>
                 </Row>
-                <div className="login-btn" data-testid="admin-login-btn-container">
-                    <Link to="/login"> <Button className="login-btn-txt" variant="primary" size="lg" data-testid="admin-login-btn"> {adminLoginString} <BsPlayCircle /> </Button> </Link>
+                <div className="home-login-btn" data-testid="admin-login-btn-container">
+                    <Link to="/login"> <Button className="home-login-btn-txt" variant="primary" size="lg" data-testid="admin-login-btn"> {adminLoginString} <BsPlayCircle /> </Button> </Link>
                 </div>
             </Container>
 

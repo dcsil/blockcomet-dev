@@ -5,24 +5,13 @@ body {
   font-family: Montserrat;
 }
 
-.App{
-  margin-top: 20%;
+.AdminLogin {
+    margin-top: 13%;
 }
 
-.searchTerm {
-  width: 100%;
-  padding: 12px 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-
-.logo-img {
+.login-logo-img {
   height: 150px;
-  width: 150px; 
-  margin-left: 60%;
-  margin-top: -10%;
+  margin-right: 70px; 
 }
 
 .searchButton {
@@ -81,7 +70,7 @@ body {
   color: #ddbe7d;
 } 
 
-.login-btn {
+.login-btn-container {
   display: flex; 
   justify-content: center;
   margin-top: 10%;
@@ -91,9 +80,4 @@ body {
 
 .search-btn:hover {
   background-color: #000; 
-}
-
-.AdminLogin {
-  display: flex;
-  flex-direction: column;
 }
