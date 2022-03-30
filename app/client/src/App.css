@@ -67,6 +67,28 @@ body {
   border: none;
 } 
 
+.login-btn-txt {
+  margin-left: -6%;
+  background-color: #f2f2f2; 
+  color: #000;
+  font-weight: bold;
+  border: none;
+} 
+.login-btn-txt:hover {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: #ddbe7d;
+} 
+
+.login-btn {
+  display: flex; 
+  justify-content: center;
+  margin-top: 10%;
+  margin-left: 10%;
+}
+
+
 .search-btn:hover {
   background-color: #000; 
 }
