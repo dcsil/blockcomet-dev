@@ -1,6 +1,6 @@
 from operator import imod
 from typing import Any
-from fastapi import Depends, FastAPI, HTTPException, Request
+from fastapi import Depends, FastAPI, HTTPException, Request, Response
 from fastapi.security import OAuth2PasswordRequestForm
 from bigchaindb_driver import BigchainDB
 from bigchaindb_driver.crypto import generate_keypair
@@ -119,6 +119,12 @@ def read_users_me(current_user = Depends(auth.get_current_user)):
 
     user = current_user
     return user
+
+# @app.get("/logout")
+# def logout(response : Response):
+#   response = RedirectResponse('*your login page*', status_code= 302)
+#   response.delete_cookie(key ='*your access token name*')
+#   return response
 
 @app.get("/")
 def read_root():
