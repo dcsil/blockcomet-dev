@@ -12,3 +12,10 @@ class Product(BaseModel):
     model_name: str
     date_of_purchase: datetime
     description: Optional[str]
+
+class User(BaseModel):
+   id: str
+   name: str
+   email: str
+   is_superuser: bool
+   hashed_password: str
