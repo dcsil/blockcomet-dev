@@ -21,7 +21,7 @@ function AdminLogin() {
 
     const onLogin = () => {
         axios.post(`${serverUrl}/login`, {
-            id: username,
+            username: username,
             password: password
         }).then((res) => {
             console.log(res)
