@@ -5,24 +5,13 @@ body {
   font-family: Montserrat;
 }
 
-.App{
-  margin-top: 20%;
+.AdminLogin {
+    margin-top: 10%;
 }
 
-.searchTerm {
-  width: 100%;
-  padding: 12px 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-
-.logo-img {
+.login-logo-img {
   height: 150px;
-  width: 150px; 
-  margin-left: 60%;
-  margin-top: -10%;
+  margin-bottom: 20px; 
 }
 
 .searchButton {
@@ -54,15 +43,16 @@ body {
   border: none;
 }
 
-.search-bar:focus {
+.login-bar:focus {
   background-color: transparent;
   outline: none;
   box-shadow: none;
   border: none;
 }
 
-.search-btn {
-  margin-left: -6%;
+.login-btn {
+  margin-top: 10%;
+  width: 200px;
   background-color: #ddbe7d; 
   border: none;
 } 
@@ -81,14 +71,8 @@ body {
   color: #ddbe7d;
 } 
 
-.login-btn {
-  display: flex; 
-  justify-content: center;
-  margin-top: 10%;
-  margin-left: 10%;
-}
 
 
-.search-btn:hover {
+.login-btn:hover {
   background-color: #000; 
 }
