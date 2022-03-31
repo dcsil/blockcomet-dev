@@ -4,6 +4,7 @@ import { useState } from 'react'
 import logo from './assets/blockcomet_logo_no_name.png';
 import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
 import { Stack, } from '@mui/material';
+import axios from 'axios'
 
 function AdminLogin() {
     const [username, setUserName] = useState('')
@@ -16,6 +17,16 @@ function AdminLogin() {
         setPassword(event.target.value)
         console.log(password)
     }
+
+    const onLogin = () => {
+        axios.post("https://blockcometapi-6dkam7pfeq-uc.a.run.app/login", {
+            id: username,
+            password: password
+        }).then((res) => {
+            console.log(res)
+        })
+    }
+
     const loginString = "Log In"
     return (
         <div className="AdminLogin" data-testid="admin-login-container">
@@ -32,7 +43,7 @@ function AdminLogin() {
                     </Form>
                 </div>
                 <div className="login-btn-container">
-                    <Button className="login-btn" variant="primary" size="lg" data-testid="login-btn"> {loginString} </Button>
+                    <Button className="login-btn" variant="primary" size="lg" data-testid="login-btn" onClick={onLogin} > {loginString} </Button>
                 </div>
             </Stack>
         </div>
