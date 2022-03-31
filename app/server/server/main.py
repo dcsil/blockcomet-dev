@@ -13,6 +13,8 @@ from . import schemas
 from pymongo import MongoClient
 from passlib.hash import bcrypt
 from . import auth
+from fastapi.middleware.cors import CORSMiddleware
+
 
 # skipping...
 
@@ -33,6 +35,15 @@ app = FastAPI()
 # Connecting to bigchainDB test network
 bdb_root_url = 'https://test.ipdb.io' 
 bdb = BigchainDB(bdb_root_url)
+
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # rolex = generate_keypair()
 # watch = {
