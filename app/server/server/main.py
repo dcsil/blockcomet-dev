@@ -9,6 +9,9 @@ from datetime import datetime, timedelta
 import json
 import sentry_sdk
 import pymongo
+import hashlib
+
+from server.config import settings
 from . import schemas
 from pymongo import MongoClient
 from passlib.hash import bcrypt
@@ -80,13 +83,58 @@ app.add_middleware(
 #     print("Block Info: ", json.dumps(block, indent=1))
 
 # send_transaction()
+
+@app.get("/mock_unique_id")
+def get_unique_id():
+    """
+    We are using the current timestamp to get the current unique ID - this will be provided by RFIDs in the future
+    """
+    cluster = MongoClient(settings.DB_URI)
+    db = cluster[settings.DB_COL_NAME]
+    table = db['uids']
+    uid = str(datetime.utcnow())
+    hashed_uid = (hashlib.sha256(uid.encode())).hexdigest()
+    uid_info = {"uid": uid, "hashed_uid": hashed_uid}
+    table.insert_one(uid_info)
+    return uid_info
+
+
 @app.post("/create_product")
-async def create_product(product: schemas.Product):
-    pass
+async def create_product(product: schemas.Product, current_user = Depends(auth.get_current_user)):
+    
+    user = current_user
+    
+    product.brand_name = product.brand_name.lower().strip()
+    if user['username'].lower().strip() != product.brand_name:
+        raise HTTPException(status_code=401, detail=f"You cannot add products for manufacturer {product.brand_name}")
+    manufacturer = generate_keypair()
+    digital_asset_payload = {'data':
+        {'company': 'blockcomet',
+            'manufacturer': product.brand_name,
+            'model': product.model_name,
+            'UID': get_unique_id()['hashed_uid']
+            }
+        }
+    tx = bdb.transactions.prepare(operation='CREATE',
+                          signers=manufacturer.public_key,
+                          asset=digital_asset_payload)
+    signed_tx = bdb.transactions.fulfill(tx, private_keys=manufacturer.private_key)
+    sent_tx = bdb.transactions.send_commit(signed_tx)
+    sent_tx == signed_tx
+
+    return sent_tx
 
 @app.get("/get_product/{hashed_id}")
 async def get_product(hashed_id: str):
-    bdb.assets.get(search=hashed_id, limit=1)
+    asset = bdb.assets.get(search=hashed_id, limit=1)
+    if len(asset) <= 0:
+        raise HTTPException(status_code=404, detail="Item not found")
+
+    asset = asset[0]['data']
+    if asset['company'] != 'blockcomet':
+        raise HTTPException(status_code=404, detail="Item found was not issued by BlockComet (Testnet)")
+    
+    return asset
 
 
 
@@ -106,7 +154,7 @@ async def sentry_exception(request: Request, call_next):
             sentry_sdk.capture_exception(e)
         raise e
 
-@app.post("/login")
+@app.post("/login", response_model=schemas.SuccessfulLogin)
 def login(form_data: OAuth2PasswordRequestForm = Depends()  # 1
 ) -> Any:
     """
@@ -117,12 +165,10 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()  # 1
     if not user:
         raise HTTPException(status_code=400, detail="Incorrect username or password")  # 3
 
-    return {
-        "access_token": auth.create_access_token(sub=user['username']),  # 4
-        "token_type": "bearer",
-    }
+    user_token = schemas.SuccessfulLogin(access_token=auth.create_access_token(sub=user['username']), token_type='bearer')
+    return user_token
 
-@app.get("/me")
+@app.get("/me", response_model=str)
 def read_users_me(current_user = Depends(auth.get_current_user)):
     """
     Fetch the current logged in user.
