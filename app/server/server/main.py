@@ -19,14 +19,14 @@ from . import auth
 
 
 # Connecting to Sentry 
-# sentry_sdk.init(
-#     "https://9b3d81b382e74643a9647070e5092443@o358880.ingest.sentry.io/6146694",
+sentry_sdk.init(
+    "https://9b3d81b382e74643a9647070e5092443@o358880.ingest.sentry.io/6146694",
 
-#     # Set traces_sample_rate to 1.0 to capture 100%
-#     # of transactions for performance monitoring.
-#     # We recommend adjusting this value in production.
-#     traces_sample_rate=1.0,
-# )
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0,
+)
 
 app = FastAPI()
 
@@ -111,14 +111,13 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()  # 1
         "token_type": "bearer",
     }
 
-@app.get("/me", response_model=schemas.User)
+@app.get("/me")
 def read_users_me(current_user = Depends(auth.get_current_user)):
     """
     Fetch the current logged in user.
     """
-
     user = current_user
-    return user
+    return user['username']
 
 # @app.get("/logout")
 # def logout(response : Response):
