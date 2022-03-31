@@ -8,7 +8,6 @@ from jose import jwt, JWTError
 from server.schemas import User
 from .config import settings
 from .security import verify_password
-from passlib.hash import bcrypt
 from pymongo import MongoClient
 from pydantic import BaseModel
 from .config import settings
