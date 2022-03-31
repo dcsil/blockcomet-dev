@@ -1,19 +1,22 @@
 from operator import imod
-from fastapi import FastAPI, Request
+from typing import Any
+from fastapi import Depends, FastAPI, HTTPException, Request
+from fastapi.security import OAuth2PasswordRequestForm
 from bigchaindb_driver import BigchainDB
 from bigchaindb_driver.crypto import generate_keypair
+from typing import Optional, MutableMapping, List, Union
+from datetime import datetime, timedelta
 import json
 import sentry_sdk
 import pymongo
+from . import schemas
 from pymongo import MongoClient
-# import schemas
-# Connecting to our mongoDB instance in cloud
-# cluster = MongoClient('mongodb+srv://admin:blockcomet@cluster0.yk74s.mongodb.net/blockcomet_users?retryWrites=true&w=majority')
-# db = cluster["blockcomet_users"]
-# collection = db["users"]
+from passlib.hash import bcrypt
+from . import auth
 
-# post = {"_id": 0, "username": "test_user"}
-# collection.insert_one(post)
+# skipping...
+
+
 
 # Connecting to Sentry 
 # sentry_sdk.init(
@@ -27,9 +30,9 @@ from pymongo import MongoClient
 
 app = FastAPI()
 
-# # Connecting to bigchainDB test network 
-# bdb_root_url = 'https://test.ipdb.io' 
-# bdb = BigchainDB(bdb_root_url)
+# Connecting to bigchainDB test network
+bdb_root_url = 'https://test.ipdb.io' 
+bdb = BigchainDB(bdb_root_url)
 
 # rolex = generate_keypair()
 # watch = {
@@ -66,9 +69,13 @@ app = FastAPI()
 #     print("Block Info: ", json.dumps(block, indent=1))
 
 # send_transaction()
-# @app.post("/create_product")
-# async def create_product(product: schemas.Product):
-#     pass
+@app.post("/create_product")
+async def create_product(product: schemas.Product):
+    pass
+
+@app.get("/get_product/{hashed_id}")
+async def get_product(hashed_id: str):
+    bdb.assets.get(search=hashed_id, limit=1)
 
 
 
@@ -87,6 +94,31 @@ async def sentry_exception(request: Request, call_next):
             }
             sentry_sdk.capture_exception(e)
         raise e
+
+@app.post("/login")
+def login(form_data: OAuth2PasswordRequestForm = Depends()  # 1
+) -> Any:
+    """
+    Get the JWT for a user with data from OAuth2 request form body.
+    """
+
+    user = auth.authenticate(id=form_data.username, password=form_data.password)  # 2
+    if not user:
+        raise HTTPException(status_code=400, detail="Incorrect username or password")  # 3
+
+    return {
+        "access_token": auth.create_access_token(sub=user['username']),  # 4
+        "token_type": "bearer",
+    }
+
+@app.get("/me", response_model=schemas.User)
+def read_users_me(current_user = Depends(auth.get_current_user)):
+    """
+    Fetch the current logged in user.
+    """
+
+    user = current_user
+    return user
 
 @app.get("/")
 def read_root():
