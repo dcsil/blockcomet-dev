@@ -2,7 +2,7 @@ import { Form, Button } from 'react-bootstrap';
 import './css/AdminLogin.css';
 import { useState } from 'react'
 import logo from './assets/blockcomet_logo_no_name.png';
-import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, Link, } from "react-router-dom";
 import { Stack, } from '@mui/material';
 import axios from 'axios'
 
