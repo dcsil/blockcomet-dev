@@ -5,6 +5,7 @@ import logo from './assets/blockcomet_logo_no_name.png';
 import { Route, Link, } from "react-router-dom";
 import { Stack, } from '@mui/material';
 import axios from 'axios'
+import { serverUrl } from './config'
 
 function AdminLogin() {
     const [username, setUserName] = useState('')
@@ -19,7 +20,7 @@ function AdminLogin() {
     }
 
     const onLogin = () => {
-        axios.post("https://blockcometapi-6dkam7pfeq-uc.a.run.app/login", {
+        axios.post(`${serverUrl}/login`, {
             id: username,
             password: password
         }).then((res) => {
