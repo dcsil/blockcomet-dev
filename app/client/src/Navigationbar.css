@@ -1,0 +1,14 @@
+#navbar-back {
+    height: 70px;
+    width: 70px;
+}
+
+.logo-navbar {
+    height: 60px;
+    width: 60px;   
+}
+
+#bc-navbar {
+    justify-content: center;
+    text-align: center;
+}

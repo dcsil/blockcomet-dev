@@ -4,8 +4,9 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import AdminLogin from "./AdminLogin"
-import Home from "./Home"
+import AdminLogin from "./AdminLogin";
+import Home from "./Home";
+import Validate from './Validate';
 
 function App() {
 
@@ -14,7 +15,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="login" element={<AdminLogin />}>
+          <Route path="login" element={<AdminLogin />} />
+          <Route path="validate/:id" element={<Validate />} >
           </Route>
         </Routes>
       </BrowserRouter>
