@@ -20,10 +20,6 @@ JWTPayloadMapping = MutableMapping[
     str, Union[datetime, bool, str, List[str], List[int]]
 ]
 
-class test_user:
-    id = 'chinmaya'
-    hashed_password = bcrypt.hash('password')
-
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl=f"{settings.API_V1_STR}/login")
 cluster = MongoClient("mongodb+srv://admin:admin@users.d0ihk.mongodb.net/blockcomet?retryWrites=true&w=majority")
 db = cluster['blockcomet']
