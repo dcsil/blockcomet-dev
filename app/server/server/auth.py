@@ -11,6 +11,7 @@ from .security import verify_password
 from passlib.hash import bcrypt
 from pymongo import MongoClient
 from pydantic import BaseModel
+from .config import settings
 
 
 class TokenData(BaseModel):
@@ -21,9 +22,9 @@ JWTPayloadMapping = MutableMapping[
 ]
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl=f"{settings.API_V1_STR}/login")
-cluster = MongoClient("mongodb+srv://admin:admin@users.d0ihk.mongodb.net/blockcomet?retryWrites=true&w=majority")
-db = cluster['blockcomet']
-table = db['users']
+cluster = MongoClient(settings.DB_URI)
+db = cluster[settings.DB_COL_NAME]
+table = db[settings.DB_NAME]
 
 
 def authenticate(

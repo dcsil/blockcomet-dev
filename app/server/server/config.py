@@ -6,6 +6,11 @@ class Settings(BaseSettings):
     API_V1_STR: str = ""
     JWT_SECRET: str = "TEST_SECRET_DO_NOT_USE_IN_PROD"
     ALGORITHM: str = "HS256"
+    DB_USER: str = "admin"
+    DB_PASSWORD: str = "admin"
+    DB_NAME: str = "users"
+    DB_COL_NAME: str = 'blockcomet'
+    DB_URI: str = f"mongodb+srv://{DB_USER}:{DB_PASSWORD}@{DB_NAME}.d0ihk.mongodb.net/{DB_COL_NAME}?retryWrites=true&w=majority"
 
     # 60 minutes * 24 hours * 8 days = 8 days
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
