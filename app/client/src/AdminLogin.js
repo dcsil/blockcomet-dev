@@ -2,30 +2,65 @@ import { Form, Button } from 'react-bootstrap';
 import './css/AdminLogin.css';
 import { useState } from 'react'
 import logo from './assets/blockcomet_logo_no_name.png';
-import { Route, Link, } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Stack, } from '@mui/material';
 import axios from 'axios'
 import { serverUrl } from './config'
+import qs from 'qs';
+import useToken from './useToken'
 
 function AdminLogin() {
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
 
+    let navigate = useNavigate();
     const updateUsername = (event) => {
         setUserName(event.target.value)
     }
     const updatePassword = (event) => {
         setPassword(event.target.value)
-        console.log(password)
     }
 
-    const onLogin = () => {
-        axios.post(`${serverUrl}/login`, {
-            username: username,
-            password: password
-        }).then((res) => {
-            console.log(res)
-        })
+    const loginUser = async () => {
+
+        var data = qs.stringify({
+            'grant_type': '',
+            'username': username,
+            'password': password,
+            'scope': '',
+            'client_id': '',
+            'client_secret': ''
+        });
+        var config = {
+            method: 'post',
+            url: `${serverUrl}/login`,
+            headers: {
+                'accept': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: data
+        };
+        return axios(config)
+            .then(function (response) {
+                console.log(response)
+                return response
+            })
+            .catch(function (error) {
+                console.log(error);
+                return error
+            });
+    }
+    const { token, setToken } = useToken();
+    const onLogin = async () => {
+        const tokenResponse = await loginUser()
+        console.log("token", tokenResponse)
+        if (tokenResponse.status == 200) {
+            setToken(tokenResponse.data?.access_token)
+            navigate(`/create`);
+        }
+        else {
+            alert("Incorrect Username/Password, please try to login again")
+        }
     }
 
     const loginString = "Log In"
@@ -44,6 +79,7 @@ function AdminLogin() {
                     </Form>
                 </div>
                 <div className="login-btn-container">
+                    {/* Temporarily redirect to create page, after auth need to shift to dashboard when created */}
                     <Button className="login-btn" variant="primary" size="lg" data-testid="login-btn" onClick={onLogin} > {loginString} </Button>
                 </div>
             </Stack>
