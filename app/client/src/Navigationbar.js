@@ -1,5 +1,5 @@
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import './Navigationbar.css';
+import './css/Navigationbar.css';
 import { useState } from 'react'
 import logo from './assets/blockcomet_logo_no_name.png';
 import { Link } from "react-router-dom";
