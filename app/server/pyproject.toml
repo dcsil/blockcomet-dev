@@ -12,6 +12,12 @@ sentry-sdk = "^1.5.7"
 pytest = "^7.0.1"
 pymongo = {extras = ["srv"], version = "^4.0.2"}
 uvicorn = "^0.17.6"
+passlib = "^1.7.4"
+python-jose = "^3.3.0"
+pydantic = {extras = ["email"], version = "^1.9.0"}
+python-multipart = "^0.0.5"
+dnspython = "^2.2.1"
+bcrypt = "^3.2.0"
 
 [tool.poetry.dev-dependencies]
 

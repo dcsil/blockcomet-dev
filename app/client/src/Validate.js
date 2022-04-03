@@ -1,5 +1,5 @@
 import { Form, Container, Row, Col, Button } from 'react-bootstrap';
-import './Validate.css';
+import './css/Validate.css';
 import { useState } from 'react'
 import { useParams } from "react-router-dom"
 import Navigationbar from './Navigationbar'

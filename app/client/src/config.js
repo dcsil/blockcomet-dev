@@ -1,0 +1,1 @@
+export const serverUrl = "https://blockcometapi-6dkam7pfeq-uc.a.run.app"
