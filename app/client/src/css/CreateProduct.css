@@ -1,32 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
-body {
-  background-color: #f2f2f2;
-  font-family: Montserrat;
+.create-banner {
+    display: flex;
+    justify-content: center;
 }
 
-a {
-  color: #000;
-}
-
-.Home{
-  margin-top: 20%;
-}
-
-.searchTerm {
-  width: 100%;
-  padding: 12px 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-
-.logo-img {
-  height: 150px;
-  width: 150px; 
-  margin-left: 60%;
-  margin-top: -10%;
+.login-logo-img {
+  height: 120px;
+  /* margin-bottom: 20px;  */
 }
 
 .searchButton {
@@ -58,48 +39,36 @@ a {
   border: none;
 }
 
-.search-bar:focus {
+.login-bar:focus {
   background-color: transparent;
   outline: none;
   box-shadow: none;
   border: none;
 }
 
-.search-btn {
-  margin-left: -6%;
+.login-btn {
+  margin-top: 10%;
+  width: 200px;
   background-color: #ddbe7d; 
   border: none;
 } 
 
-.search-btn:focus {
-  margin-left: -6%;
-  background-color: #ddbe7d; 
-  border: none;
-} 
-
-.home-login-btn-txt {
+.login-btn-txt {
   margin-left: -6%;
   background-color: #f2f2f2; 
   color: #000;
   font-weight: bold;
   border: none;
 } 
-.home-login-btn-txt:hover {
+.login-btn-txt:hover {
   background-color: transparent;
   outline: none;
   border: none;
   color: #ddbe7d;
 } 
 
-.home-login-btn {
-  display: flex; 
-  justify-content: center;
-  margin-top: 10%;
-  margin-left: 10%;
-}
 
 
-.search-btn:hover {
+.login-btn:hover {
   background-color: #000; 
 }
-

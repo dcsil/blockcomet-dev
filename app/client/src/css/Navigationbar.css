@@ -12,3 +12,19 @@
     justify-content: center;
     text-align: center;
 }
+
+.logout-btn {
+  margin-left: 30%;
+  background-color: transparent; 
+  color: #000;
+  font-weight: bold;
+  border: none;
+} 
+
+.logout-btn:hover {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: #ddbe7d;
+} 
+

@@ -2,9 +2,9 @@ import { Form, Container, Row, Col, Button } from 'react-bootstrap';
 import './css/App.css';
 import { useState } from 'react'
 import logo from './assets/blockcomet_logo_no_name.png';
-import { Link, Navigate, useNavigate  } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 import { BsPlayCircle } from "react-icons/bs";
-import axios from 'axios';
+import useToken from './useToken'
 
 function Home() {
     const [productID, setProductID] = useState('')
@@ -20,6 +20,17 @@ function Home() {
         
     }
 
+    const { token } = useToken();
+    const onClickAdminLogin = () => {
+
+        if (token === "" || token === undefined || token === null) {
+            navigate('/login')
+        }
+        else {
+            // TODO: Change to dashboard when ready
+            navigate('/create')
+        }
+    }
     return (
         <div className="Home">
             <Container className="home-container">
@@ -37,7 +48,7 @@ function Home() {
                     </Row>
                 </Form>
                 <div className="home-login-btn" data-testid="admin-login-btn-container">
-                    <Link to="/login"> <Button className="login-btn-txt" variant="primary" size="lg" data-testid="admin-login-btn"> {adminLoginString} <BsPlayCircle /> </Button> </Link>
+                    <Button className="home-login-btn-txt" variant="primary" size="lg" data-testid="admin-login-btn" onClick={onClickAdminLogin}> {adminLoginString} <BsPlayCircle /> </Button>
                 </div>
             </Container>
 
