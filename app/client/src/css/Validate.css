@@ -1,0 +1,11 @@
+.failure-img {
+    height: 200px;
+    width: 210px; 
+}
+
+.Validation {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 7%;
+}

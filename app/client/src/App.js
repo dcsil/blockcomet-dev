@@ -3,8 +3,9 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import AdminLogin from "./AdminLogin"
-import Home from "./Home"
+import AdminLogin from "./AdminLogin";
+import Home from "./Home";
+import Validate from './Validate';
 import CreateProduct from './CreateProduct'
 import { useEffect } from 'react';
 import React from "react";
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="login" element={<AdminLogin />} />
+          <Route path="validate/:id" element={<Validate />} />
           <Route path="create" element={<CreateProduct />} />
         </Routes>
       </BrowserRouter>

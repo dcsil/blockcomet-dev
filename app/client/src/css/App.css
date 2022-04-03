@@ -5,7 +5,11 @@ body {
   font-family: Montserrat;
 }
 
-.Home {
+a {
+  color: #000;
+}
+
+.Home{
   margin-top: 20%;
 }
 
@@ -62,6 +66,12 @@ body {
 }
 
 .search-btn {
+  margin-left: -6%;
+  background-color: #ddbe7d; 
+  border: none;
+} 
+
+.search-btn:focus {
   margin-left: -6%;
   background-color: #ddbe7d; 
   border: none;
