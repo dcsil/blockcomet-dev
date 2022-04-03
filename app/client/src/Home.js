@@ -16,8 +16,12 @@ function Home() {
     const validateProduct = e => {
         e.preventDefault()
         const productID = e.target.form[0].value
-        return navigate(`/validate/${productID}`)
-        
+        if (!productID) {
+            alert('Please enter a Product ID')
+        }
+        else {
+            return navigate(`/validate/${productID}`)
+        }
     }
 
     const { token } = useToken();
