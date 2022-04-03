@@ -7,7 +7,7 @@ class Product(BaseModel):
     class Config:
        allow_population_by_field_name = True
        extra = Extra.allow
-    hashed_id: str
+    hashed_id: Optional[str]
     brand_name: str
     model_name: str
     date_of_purchase: datetime
@@ -19,3 +19,7 @@ class User(BaseModel):
    email: str
    is_superuser: bool
    hashed_password: str
+
+class SuccessfulLogin(BaseModel):
+   access_token: str
+   token_type: str
