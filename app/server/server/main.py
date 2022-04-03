@@ -1,7 +1,9 @@
 from operator import imod
+import re
 from typing import Any
 from fastapi import Depends, FastAPI, HTTPException, Request, Response
 from fastapi.security import OAuth2PasswordRequestForm
+from fastapi.responses import RedirectResponse, HTMLResponse
 from bigchaindb_driver import BigchainDB
 from bigchaindb_driver.crypto import generate_keypair
 from typing import Optional, MutableMapping, List, Union
@@ -109,7 +111,7 @@ async def create_product(product: schemas.Product, current_user = Depends(auth.g
         raise HTTPException(status_code=401, detail=f"You cannot add products for manufacturer {product.brand_name}")
     manufacturer = generate_keypair()
     digital_asset_payload = {'data':
-        {'company': 'blockcomet',
+        {'signature': settings.SIGNATURE,
             'manufacturer': product.brand_name,
             'model': product.model_name,
             'UID': get_unique_id()['hashed_uid']
@@ -124,18 +126,31 @@ async def create_product(product: schemas.Product, current_user = Depends(auth.g
 
     return sent_tx
 
-@app.get("/get_product/{hashed_id}")
+@app.get("/get_product/{hashed_id}", response_model=str)
 async def get_product(hashed_id: str):
     asset = bdb.assets.get(search=hashed_id, limit=1)
     if len(asset) <= 0:
         raise HTTPException(status_code=404, detail="Item not found")
-
     asset = asset[0]['data']
-    if asset['company'] != 'blockcomet':
+    if asset['signature'] != settings.SIGNATURE:
         raise HTTPException(status_code=404, detail="Item found was not issued by BlockComet (Testnet)")
     
-    return asset
+    return asset['id']
 
+@app.get("/get_products")
+async def get_product(current_user = Depends(auth.get_current_user)):
+    user = current_user
+    assets = bdb.assets.get(search=user['username'])
+    
+    assets_return = []
+    for asset in assets:
+        try:
+            if asset['data']['signature'] == settings.SIGNATURE:
+                assets_return.append(asset)
+        except Exception:
+            pass
+    
+    return assets_return
 
 
 @app.middleware("http")
@@ -174,14 +189,17 @@ def read_users_me(current_user = Depends(auth.get_current_user)):
     Fetch the current logged in user.
     """
     user = current_user
+    print(user)
     return user['username']
 
-# @app.get("/logout")
-# def logout(response : Response):
-#   response = RedirectResponse('*your login page*', status_code= 302)
-#   response.delete_cookie(key ='*your access token name*')
-#   return response
+@app.get("/logout", response_class=HTMLResponse)
+def logout(response : Response, current_user=Depends(auth.get_current_user)):
+    user = current_user
+    response = RedirectResponse(f'{settings.FRONTEND_URL}/login', status_code= 302)
+    response.delete_cookie(key = user['username'])
+    return response
 
 @app.get("/")
 def read_root():
     return {"Welcome to": "Blockcomet"}
+    
