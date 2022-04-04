@@ -44,7 +44,11 @@ jobs:
           cd app/server
           poetry install
 
-      - name: Test with pytest
-        run: |
-          cd app/server
-          poetry run pytest
+      - name: Test with pytest and publish coverage
+        uses: paambaati/codeclimate-action@v3.0.0
+        working-directory: ${{github.workspace}}/server
+        env:
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+        with:
+          coverageCommand: coverage run -m pytest
+          coverageLocations: .coverage
