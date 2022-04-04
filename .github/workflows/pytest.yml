@@ -1,4 +1,4 @@
-name: PyTest
+name: PyTest and Upload
 on: push
 
 jobs:
