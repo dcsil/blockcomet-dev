@@ -8,7 +8,6 @@ import Navigationbar from './AdminNavigationbar';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import TextField from '@mui/material/TextField';
 import useToken from './useToken'
-import qs from 'qs';
 
 function CreateProduct() {
     const { token } = useToken()
@@ -27,9 +26,6 @@ function CreateProduct() {
     const [productId, setProductId] = useState('')
     const [dateOfPurchase, setDateOfPurchase] = useState('')
 
-    // const [dataFields, setDataFields] = useState([{ key: "Brand", value: "Value", isDisabled: true },
-    // { key: "Product Name", value: "Value", isDisabled: true }, { key: "Product ID", value: "Value", isDisabled: true }, { key: "Date of Purchase", value: "Value", isDisabled: true }
-    // ])
     const [dataFields, setDataFields] = useState([])
 
     const handleFieldChange = (index, event) => {
@@ -80,34 +76,31 @@ function CreateProduct() {
 
         const requestData = [...fixedData, ...dataFields]
         console.log("Request Data", requestData)
-        var data = qs.stringify({
-            data: requestData
-        });
 
         var config = {
             method: 'post',
             url: `${serverUrl}/create_product`,
             headers: {
                 'accept': 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/json',
                 "Authorization": `Bearer ${token}`
             },
             data: {
-                "data": requestData
+                data: requestData
             }
+
         };
-        console.log("request data", data)
-        //TODO: Hook up to API
-        // axios(config)
-        //     .then(function (response) {
-        //         console.log(response)
-        //         if (response.status == 200) {
-        //             //navigate("/sucess")
-        //         }
-        //     })
-        //     .catch(function (error) {
-        //         console.log("create product", error);
-        //     });
+        //TODO: Navigate to validate page
+        axios(config)
+            .then(function (response) {
+                console.log(response)
+                if (response.status == 200) {
+                    //navigate("/id/validate")
+                }
+            })
+            .catch(function (error) {
+                console.log("create product", error);
+            });
     }
     return (
         <div className="CreateProduct" data-testid="create-product-container">
