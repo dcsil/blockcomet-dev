@@ -18,6 +18,7 @@ pydantic = {extras = ["email"], version = "^1.9.0"}
 python-multipart = "^0.0.5"
 dnspython = "^2.2.1"
 bcrypt = "^3.2.0"
+coverage = "^6.3.2"
 
 [tool.poetry.dev-dependencies]
 
