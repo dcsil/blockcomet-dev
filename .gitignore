@@ -2,3 +2,4 @@
 poetry.lock
 yarn.lock
 *.pytest_cache
+coverage
