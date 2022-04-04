@@ -1,17 +1,23 @@
 from datetime import datetime
+from itertools import product
 from fastapi import FastAPI
 from pydantic import BaseModel, Field, Extra
-from typing import Optional
+from typing import Optional, List, Dict
 
-class Product(BaseModel):
-    class Config:
-       allow_population_by_field_name = True
-       extra = Extra.allow
-    hashed_id: Optional[str]
-    brand_name: str
-    model_name: str
-    date_of_purchase: datetime
-    description: Optional[str]
+class DataField(BaseModel):
+   key: str
+   value: str
+
+class InProduct(BaseModel):
+   data: List[DataField]
+
+class ProductDataResponse(BaseModel):
+   product_data: List[DataField]
+   added_by: str
+
+class ResponseProduct(BaseModel):
+   data: ProductDataResponse
+
 
 class User(BaseModel):
    id: str
