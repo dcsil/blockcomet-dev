@@ -97,16 +97,17 @@ function CreateProduct() {
             }
         };
         console.log("request data", data)
-        axios(config)
-            .then(function (response) {
-                console.log(response)
-                if (response.status == 200) {
-                    //navigate("/sucess")
-                }
-            })
-            .catch(function (error) {
-                console.log("create product", error);
-            });
+        //TODO: Hook up to API
+        // axios(config)
+        //     .then(function (response) {
+        //         console.log(response)
+        //         if (response.status == 200) {
+        //             //navigate("/sucess")
+        //         }
+        //     })
+        //     .catch(function (error) {
+        //         console.log("create product", error);
+        //     });
     }
     return (
         <div className="CreateProduct" data-testid="create-product-container">
