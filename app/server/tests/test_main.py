@@ -69,7 +69,7 @@ def test_unauth_create(unauth_product):
     assert response.status_code == 401
 
 def test_get_product():
-    response = client.get(f"/get_product/{unique_ids[0]}", headers=auth_header)
+    response = client.get(f"/get_product/{unique_ids[0]}")
     assert response.ok
     assert response.json()['data']['added_by'] == 'blockcomet_mvp'
 
@@ -100,3 +100,8 @@ def test_bad_create(valid_product2):
     response = client.post("/create_product", headers=unauth_header, data=valid_product2)
     assert not response.ok
     assert response.status_code == 401
+
+def test_mock_uid():
+    response = client.get("/mock_unique_id")
+    assert response.ok
+    assert "hashed_uid" in response.json()
