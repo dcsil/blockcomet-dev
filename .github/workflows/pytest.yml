@@ -5,6 +5,9 @@ jobs:
   test:
     runs-on: self-hosted
     timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: ${{github.workspace}}/app/server
 
     steps:
       - name: Check out repository code
@@ -23,12 +26,6 @@ jobs:
           virtualenvs-in-project: false
           installer-parallel: true
 
-      - name: cd into server
-        run: |
-          cd app/server
-          pwd
-          poetry config --list
-
       - name: Check python versions
         run: |
           pwd
@@ -40,13 +37,10 @@ jobs:
           poetry config virtualenvs.create false
 
       - name: Install Dependencies
-        run: |
-          cd app/server
-          poetry install
+        run: poetry install
 
       - name: Test with pytest and publish coverage
         uses: paambaati/codeclimate-action@v3.0.0
-        working-directory: ${{github.workspace}}/server
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
