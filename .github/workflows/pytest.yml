@@ -4,7 +4,7 @@ on: push
 jobs:
   test:
     runs-on: self-hosted
-    timeout-minutes: 20
+    timeout-minutes: 40
     defaults:
       run:
         working-directory: ${{github.workspace}}/app/server
