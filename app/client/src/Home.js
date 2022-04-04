@@ -2,7 +2,7 @@ import { Form, Container, Row, Col, Button } from 'react-bootstrap';
 import './css/App.css';
 import { useState } from 'react'
 import logo from './assets/blockcomet_logo_no_name.png';
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BsPlayCircle } from "react-icons/bs";
 import useToken from './useToken'
 
@@ -23,10 +23,8 @@ function Home() {
             return navigate(`/validate/${productID}`)
         }
     }
-
     const { token } = useToken();
     const onClickAdminLogin = () => {
-
         if (token === "" || token === undefined || token === null) {
             navigate('/login')
         }
@@ -55,7 +53,6 @@ function Home() {
                     <Button className="home-login-btn-txt" variant="primary" size="lg" data-testid="admin-login-btn" onClick={onClickAdminLogin}> {adminLoginString} <BsPlayCircle /> </Button>
                 </div>
             </Container>
-
         </div>
     )
 }

@@ -14,15 +14,8 @@ function AdminLogin() {
     const [password, setPassword] = useState('')
 
     let navigate = useNavigate();
-    const updateUsername = (event) => {
-        setUserName(event.target.value)
-    }
-    const updatePassword = (event) => {
-        setPassword(event.target.value)
-    }
 
     const loginUser = async () => {
-
         var data = qs.stringify({
             'grant_type': '',
             'username': username,
@@ -41,8 +34,7 @@ function AdminLogin() {
             data: data
         };
         return axios(config)
-            .then(function (response) {
-                console.log(response)
+            .then((response) => {
                 return response
             })
             .catch(function (error) {
@@ -50,10 +42,9 @@ function AdminLogin() {
                 return error
             });
     }
-    const { token, setToken } = useToken();
+    const { setToken } = useToken();
     const onLogin = async () => {
         const tokenResponse = await loginUser()
-        console.log("token", tokenResponse)
         if (tokenResponse.status == 200) {
             setToken(tokenResponse.data?.access_token)
             navigate(`/create`);
@@ -62,7 +53,6 @@ function AdminLogin() {
             alert("Incorrect Username/Password, please try to login again")
         }
     }
-
     const loginString = "Log In"
     return (
         <div className="AdminLogin" data-testid="admin-login-container">
@@ -74,8 +64,8 @@ function AdminLogin() {
                 </div>
                 <div className="login-form">
                     <Form>
-                        <Form.Control className="search-bar" size="lg" type="text" data-testid="username-bar" placeholder="Username" onChange={updateUsername} />
-                        <Form.Control className="search-bar" size="lg" type="password" data-testid="password-bar" placeholder="Password" onChange={updatePassword} />
+                        <Form.Control className="search-bar" size="lg" type="text" data-testid="username-bar" placeholder="Username" onChange={event => setUserName(event.target.value)} />
+                        <Form.Control className="search-bar" size="lg" type="password" data-testid="password-bar" placeholder="Password" onChange={event => setPassword(event.target.value)} />
                     </Form>
                 </div>
                 <div className="login-btn-container">
