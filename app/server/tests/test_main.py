@@ -49,6 +49,16 @@ def test_get_login_token():
     assert response.ok
     return response.json()
 
+def test_get_invalid_login_token():
+    payload='grant_type=&username=test&password=test12345456&scope=&client_id=&client_secret='
+    headers = {
+        'accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    response = client.post("/login", headers=headers, data=payload)
+    assert not response.ok
+    return response.status_code == 400
+
 login_token = test_get_login_token()['access_token']
 auth_header = {'Authorization': f'Bearer {login_token}'}
 unauth_header = {'Authorization': f'Bearer {login_token}12'}
@@ -72,6 +82,11 @@ def test_get_product():
     response = client.get(f"/get_product/{unique_ids[0]}")
     assert response.ok
     assert response.json()['data']['added_by'] == 'blockcomet_mvp'
+
+def test_get_absent_product():
+    response = client.get(f"/get_product/cduhcdhcdofherfp")
+    assert not response.ok
+    assert response.status_code == 404
 
 def test_get_by_manufacturer():
     response = client.get("/get_products", headers=auth_header)
@@ -105,3 +120,8 @@ def test_mock_uid():
     response = client.get("/mock_unique_id")
     assert response.ok
     assert "hashed_uid" in response.json()
+
+def test_root():
+    response = client.get("/")
+    assert response.ok
+    assert 'blockcomet' in response.json().lower()
