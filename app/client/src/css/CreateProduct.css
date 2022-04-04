@@ -1,74 +1,156 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
-.create-banner {
-    display: flex;
-    justify-content: center;
-}
-
-.login-logo-img {
-  height: 120px;
-  /* margin-bottom: 20px;  */
-}
-
-.searchButton {
-  background-color: #ddbe7d; 
-  border: none;
-  color: white;
-  padding: 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 2px;
-} 
-
-.search-bar {
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
+.create-bar-key {
   background-color: transparent;
+  font-weight: bold;
+  border: 1 px solid;
 }
 
-.search-bar:hover {
-  background-color: transparent;
-  outline: none;
-  border: none;
-}
-
-.search-bar:active {
-  background-color: transparent;
-  outline: none;
-  border: none;
-}
-
-.login-bar:focus {
-  background-color: transparent;
-  outline: none;
+.create-bar-key:hover {
   box-shadow: none;
-  border: none;
 }
 
-.login-btn {
+.create-bar-key:focus {
+  box-shadow: none;
+  background-color: transparent;
+  outline: none;
+}
+
+.create-bar-value {
+  border: 1px solid #ddbe7d;
+}
+
+.create-bar-value:hover {
+  box-shadow: none;
+}
+
+.create-bar-value:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.create-bar-value:active {
+  box-shadow: none;
+  border: 1px solid #ddbe7d;
+  outline: none;
+}
+
+.create-bar-key:disabled {
+  background-color: transparent;
+}
+
+.data-field-row{
+  margin-bottom: 20px;
+}
+
+.submit-btn {
   margin-top: 10%;
-  width: 200px;
+  margin-bottom: 30px;
   background-color: #ddbe7d; 
   border: none;
+  font-weight: bold;
 } 
 
-.login-btn-txt {
+.submit-btn:hover {
+  background-color: #ddbe7d;
+  color: #000;
+}
+
+.submit-btn:focus {
+  background-color: #ddbe7d;
+  box-shadow: none;
+  outline: none;
+}
+
+.submit-btn:active {
+  background-color: #ddbe7d;
+  box-shadow: none;
+  outline: none;
+}
+
+.submit-btn:visited {
+  background-color: #ddbe7d;
+  box-shadow: none;
+  outline: none;
+}
+
+.add-field-btn-txt {
   margin-left: -6%;
   background-color: #f2f2f2; 
   color: #000;
   font-weight: bold;
   border: none;
 } 
-.login-btn-txt:hover {
+.add-field-btn-txt:hover {
   background-color: transparent;
+  box-shadow: none;
   outline: none;
   border: none;
   color: #ddbe7d;
 } 
 
+.add-field-btn-txt:focus {
+  background-color: transparent;
+  box-shadow: none;
+  outline: none;
+  border: none;
+  color: #ddbe7d;
+} 
+.add-field-btn-txt:active {
+  background-color: transparent;
+  box-shadow: none;
+  outline: none;
+  border: none;
+  color: #ddbe7d;
+} 
 
+.add-field-btn-txt:visited {
+  background-color: transparent;
+  box-shadow: none;
+  outline: none;
+  border: none;
+  color: #ddbe7d;
+} 
 
-.login-btn:hover {
-  background-color: #000; 
+.add-field-btn{
+  margin-left: 5%;
+  margin-top: 15px;
+}
+
+.add-field-btn:focus{
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: #ddbe7d;
+}
+.add-field-btn:active{
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: #ddbe7d;
+}
+
+.add-field-btn:visited{
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: #ddbe7d;
+}
+
+.create-prod-txt {
+  font-size: xx-large;
+  font-weight: 500;
+  margin-left: 5%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.remove-icon-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.remove-icon{
+  color: #e21001;
 }
