@@ -1,4 +1,4 @@
-name: PyTest and Upload
+name: PyTest and Coverage Upload
 on: push
 
 jobs:
