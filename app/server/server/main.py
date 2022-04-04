@@ -194,7 +194,7 @@ def logout(response : Response, current_user=Depends(auth.get_current_user)):
     response.delete_cookie(key = user['username'])
     return response
 
-@app.get("/")
+@app.get("/", response_model=str)
 def read_root():
-    return {"Welcome to": "Blockcomet"}
+    return "Welcome to BlockComet's API"
     
