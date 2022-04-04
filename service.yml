@@ -1,11 +1,11 @@
 tools:
   exceptions: https://sentry.io/organizations/dcsil/issues/?project=6146694
-  logging: https://service.us2.sumologic.com/ui/?appName=blockcomet-dev
+  logging: https://console.cloud.google.com/logs/query;cursorTimestamp=2022-04-04T00:24:44.469355Z?referrer=search&project=blockcomet&query=%0A
   ci: https://github.com/dcsil/blockcomet-dev/actions
 
 services:
-  production: https://blockcomet.nn.r.appspot.com/
-  production_server: https://blockcometapi-6dkam7pfeq-uc.a.run.app/ 
+  production: https://blockcometwebsite-6dkam7pfeq-ue.a.run.app
+  production_server: https://blockcometapi-6dkam7pfeq-uc.a.run.app
 
 docs:
   getting_started: https://github.com/dcsil/blockcomet-dev/blob/main/README.md

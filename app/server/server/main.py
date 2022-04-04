@@ -37,9 +37,8 @@ sentry_sdk.init(
 
 app = FastAPI()
 
-# Connecting to bigchainDB test network
-bdb_root_url = 'https://test.ipdb.io' 
-bdb = BigchainDB(bdb_root_url)
+# Connecting to bigchainDB test network 
+bdb = BigchainDB(settings.BDB_URL)
 
 origins = ["*"]
 app.add_middleware(
@@ -87,7 +86,7 @@ app.add_middleware(
 # send_transaction()
 
 @app.get("/mock_unique_id")
-def get_unique_id():
+async def get_unique_id():
     """
     We are using the current timestamp to get the current unique ID - this will be provided by RFIDs in the future
     """
@@ -96,27 +95,25 @@ def get_unique_id():
     table = db['uids']
     uid = str(datetime.utcnow())
     hashed_uid = (hashlib.sha256(uid.encode())).hexdigest()
-    uid_info = {"uid": uid, "hashed_uid": hashed_uid}
-    table.insert_one(uid_info)
-    return uid_info
+    table.insert_one({"uid": uid, "hashed_uid": hashed_uid})
+    return {"uid": uid, "hashed_uid": hashed_uid}
 
 
-@app.post("/create_product")
-async def create_product(product: schemas.Product, current_user = Depends(auth.get_current_user)):
+@app.post("/create_product", response_model=str)
+async def create_product(product: schemas.InProduct, current_user = Depends(auth.get_current_user)):
     
     user = current_user
+    brand_name = ''
+    product = product.dict()
+    for field in product['data']:
+        if field['key'] == 'Brand':
+            brand_name = field['value']
     
-    product.brand_name = product.brand_name.lower().strip()
-    if user['username'].lower().strip() != product.brand_name:
-        raise HTTPException(status_code=401, detail=f"You cannot add products for manufacturer {product.brand_name}")
+    brand_name = brand_name.lower().strip()
+    if user['username'].lower().strip() != brand_name:
+        raise HTTPException(status_code=401, detail=f"You cannot add products for manufacturer {brand_name}")
     manufacturer = generate_keypair()
-    digital_asset_payload = {'data':
-        {'signature': settings.SIGNATURE,
-            'manufacturer': product.brand_name,
-            'model': product.model_name,
-            'UID': get_unique_id()['hashed_uid']
-            }
-        }
+    digital_asset_payload = {'data': {'product_data': product['data'], 'added_by': settings.SIGNATURE}}
     tx = bdb.transactions.prepare(operation='CREATE',
                           signers=manufacturer.public_key,
                           asset=digital_asset_payload)
@@ -124,20 +121,19 @@ async def create_product(product: schemas.Product, current_user = Depends(auth.g
     sent_tx = bdb.transactions.send_commit(signed_tx)
     sent_tx == signed_tx
 
-    return sent_tx
+    return f"Added product with ID: {sent_tx['id']}"
 
-@app.get("/get_product/{hashed_id}", response_model=str)
+@app.get("/get_product/{hashed_id}", response_model=schemas.ResponseProduct)
 async def get_product(hashed_id: str):
     asset = bdb.assets.get(search=hashed_id, limit=1)
     if len(asset) <= 0:
         raise HTTPException(status_code=404, detail="Item not found")
-    asset = asset[0]['data']
-    if asset['signature'] != settings.SIGNATURE:
+    asset = asset[0]
+    if asset['data']['added_by'] != settings.SIGNATURE:
         raise HTTPException(status_code=404, detail="Item found was not issued by BlockComet (Testnet)")
-    
-    return asset['id']
+    return asset
 
-@app.get("/get_products")
+@app.get("/get_products", response_model=List[schemas.ResponseProduct])
 async def get_product(current_user = Depends(auth.get_current_user)):
     user = current_user
     assets = bdb.assets.get(search=user['username'])
@@ -145,7 +141,7 @@ async def get_product(current_user = Depends(auth.get_current_user)):
     assets_return = []
     for asset in assets:
         try:
-            if asset['data']['signature'] == settings.SIGNATURE:
+            if asset['data']['added_by'] == settings.SIGNATURE:
                 assets_return.append(asset)
         except Exception:
             pass
@@ -189,13 +185,12 @@ def read_users_me(current_user = Depends(auth.get_current_user)):
     Fetch the current logged in user.
     """
     user = current_user
-    print(user)
     return user['username']
 
 @app.get("/logout", response_class=HTMLResponse)
 def logout(response : Response, current_user=Depends(auth.get_current_user)):
     user = current_user
-    response = RedirectResponse(f'{settings.FRONTEND_URL}/login', status_code= 302)
+    response = RedirectResponse(f'{settings.FRONTEND_URL}/login', status_code=302)
     response.delete_cookie(key = user['username'])
     return response
 

@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     DB_URI: str = f"mongodb+srv://{DB_USER}:{DB_PASSWORD}@{DB_NAME}.d0ihk.mongodb.net/{DB_COL_NAME}?retryWrites=true&w=majority"
     SIGNATURE: str = 'blockcomet_mvp'
     FRONTEND_URL: str = 'https://blockcometwebsite-6dkam7pfeq-ue.a.run.app'
+    BDB_URL = 'https://test.ipdb.io'
 
     # 60 minutes * 24 hours * 8 days = 8 days
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8

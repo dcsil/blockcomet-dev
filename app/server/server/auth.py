@@ -32,7 +32,6 @@ def authenticate(
     password: str,
 ) -> Optional[User]:
     user = table.find_one({'username': id})
-    print(user)
     if not user:
         return None
     if not verify_password(password, user['password']):  # 1
