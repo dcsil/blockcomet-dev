@@ -62,7 +62,7 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
-          coverageCommand: bin/coverage
+          coverageCommand: bin/test_coverage
           coverageLocations: |
             ${{github.workspace}}/client/coverage/lcov.info:lcov
             ${{github.workspace}}/server/lcov_coverage:lcov
