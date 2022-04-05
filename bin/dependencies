@@ -1,25 +1,5 @@
 #!/usr/bin/env bash
 
-install_postgres() {
-  if [ "$(uname)" == "Darwin" ]; then
-    brew cask list | grep postgres > /dev/null 2>&1
-    if [ $? -eq 1 ] && [ ! -d /Applications/Postgres.app ]; then
-      brew cask install postgres
-    else
-      echo "postgres already installed"
-      open /Applications/Postgres.app
-    fi
-  else
-    command -v psql > /dev/null 2>&1
-    if [ $? -eq 0 ]; then
-      echo "postgres already installed"
-    else
-      sudo apt-get update
-      sudo apt install postgresql postgresql-contrib
-    fi
-  fi
-}
-
 install_homebrew() {
   if [ "$(uname)" == "Darwin" ]; then
     echo "Installing Homebrew"
