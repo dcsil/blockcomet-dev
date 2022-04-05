@@ -72,5 +72,6 @@ jobs:
           coverageCommand: bin/test_coverage
           coverageLocations: |
             /home/runner/work/blockcomet-dev/blockcomet-dev/app/client/coverage/lcov.info:lcov
+            /home/runner/work/blockcomet-dev/blockcomet-dev/app/server/coverage.xml:clover
 
   
