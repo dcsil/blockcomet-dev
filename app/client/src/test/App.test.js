@@ -12,7 +12,7 @@ test("logo exists", () => {
   const { getByTestId } = render(
     <App />
   );
-  expect(getByTestId("logo")).toBeTruthy();
+  expect(getByTestId("logo-img")).toBeTruthy();
 });
 
 test("search bar exists", () => {
