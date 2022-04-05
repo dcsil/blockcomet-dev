@@ -1,0 +1,34 @@
+.Dashboard {
+    margin-top: 5%;
+    margin-left: 10%;
+    padding-bottom: 1%;
+}
+
+h4 {
+    display: inline;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+h5 {
+    display: inline;
+    padding-left: 10px;
+    padding-right: 10px;  
+    cursor: pointer;
+}
+
+h5:hover {
+    font-weight: bold;
+    color: #ddbe7d;
+}
+
+.react-bootstrap-table table { 
+    width: 90%;
+    table-layout: auto !important; 
+    margin: 0 auto;
+}
+
+.page-item.active .page-link {
+    background-color: #ddbe7d;
+    border-color: #ddbe7d;
+}

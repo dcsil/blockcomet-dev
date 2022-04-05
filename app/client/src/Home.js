@@ -30,7 +30,7 @@ function Home() {
         }
         else {
             // TODO: Change to dashboard when ready
-            navigate('/create')
+            navigate('/dashboard')
         }
     }
     return (
