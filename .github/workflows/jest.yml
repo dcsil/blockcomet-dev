@@ -20,26 +20,10 @@ jobs:
           cd app/client
           yarn
       
-      - name: Run tests
-        run: |
-          cd app/client
-          yarn test --coverage
-      
-      - name: Upload coverage
-        uses: caffco/code-climate-github-action@v0.0.1-alpha.7
+      - name: Test & publish coverage
+        uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          repository_root_path: ${{github.workspace}}
-          collect_coverage: 'true'
-          coverage_file_patterns: |
-            app/client/coverage/lcov.info:lcov
-      
-
-      # - name: Test & publish coverage
-      #   uses: paambaati/codeclimate-action@v3.0.0
-      #   env:
-      #     CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      #   with:
-      #     coverageCommand: yarn run test --coverage
-      #     workingDirectory: app/client
+          coverageCommand: yarn run test --coverage
+          workingDirectory: app/client
