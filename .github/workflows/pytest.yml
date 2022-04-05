@@ -48,43 +48,30 @@ jobs:
           cd app/server
           poetry install
       
-      # - name: Setup Nodejs and npm
-      #   uses: actions/setup-node@v2
-      #   with:
-      #     node-version: "14"
+      - name: Setup Nodejs and npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
 
-      # - name: Setup yarn
-      #   run: npm install -g yarn
+      - name: Setup yarn
+        run: npm install -g yarn
 
-      # - name: Install modules
-      #   run: |
-      #     cd app/client
-      #     yarn
+      - name: Install modules
+        run: |
+          cd app/client
+          yarn
       
       - name: Check PWD
         run: pwd
-
-      # - name: Test with pytest and publish coverage
-      #   uses: paambaati/codeclimate-action@v2.7.1
-      #   env:
-      #     CC_TEST_REPORTER_ID: f664ec478b07e02ec20197f90b89f38e8085d2083f6ca81a346046b53d2876ed
-      #   with:
-      #     coverageCommand: bash ./bin/test_coverage
-      #     coverageLocations: |
-      #       ${{github.workspace}}/client/coverage/lcov.info:lcov
-      #       ${{github.workspace}}/server/xml_coverage.xml:clover
-
-      # - name: Run Pytest
-      #   run: |
-      #     cd app/server
-      #     poetry run pytest tests --cov-report xml --cov server
 
       - name: Test & publish coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: poetry run pytest tests --cov-report xml --cov server
-          workingDirectory: app/server     
-        
+          coverageCommand: bin/test_coverage
+          coverageLocations: |
+            /home/runner/work/blockcomet-dev/blockcomet-dev/app/client/coverage/lcov.info:lcov
+            /home/runner/work/blockcomet-dev/blockcomet-dev/app/server/xml_coverage.xml:clover
+
   
