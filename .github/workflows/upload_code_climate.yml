@@ -1,0 +1,81 @@
+name: Code Climate
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9' 
+          
+      - name: Install and configure Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: 1.1.10
+          virtualenvs-create: false
+          virtualenvs-in-project: false
+          installer-parallel: true
+
+      - name: cd into server
+        run: |
+          cd app/server
+          pwd
+          poetry config --list
+
+      - name: Check python versions
+        run: |
+          pwd
+          python --version
+
+      - name: Turning off virtualenv
+        run: |
+          pwd
+          poetry config virtualenvs.create false
+
+      - name: Install Dependencies
+        run: |
+          cd app/server
+          poetry install
+      
+      - name: Setup Nodejs and npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - name: Setup yarn
+        run: npm install -g yarn
+
+      - name: Install modules
+        run: |
+          cd app/client
+          yarn
+      
+      - name: Check PWD
+        run: pwd
+      
+      - name: Run tests with coverage for frontend and backend
+        run: bin/test_coverage
+
+      - name: Upload coverage
+        uses: caffco/code-climate-github-action@v1.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          repository_root_path: ${{github.workspace}}
+          collect_coverage: 'true'
+          coverage_file_patterns: |
+            app/client/coverage/lcov.info:lcov
+            app/server/coverage.xml:clover
+
+  
