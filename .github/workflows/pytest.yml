@@ -56,6 +56,9 @@ jobs:
         run: |
           cd app/client
           yarn
+      
+      - name: Check PWD
+        run: pwd
 
       - name: Test with pytest and publish coverage
         uses: paambaati/codeclimate-action@v3.0.0
