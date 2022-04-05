@@ -25,5 +25,5 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: bin/test_coverage
-          coverageLocations: /home/runner/work/blockcomet-dev/blockcomet-dev/app/client/coverage/lcov.info:lcov
+          coverageCommand: yarn run test --coverage
+          workingDirectory: app/client
