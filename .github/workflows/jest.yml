@@ -29,6 +29,8 @@ jobs:
         uses: paambaati/codeclimate-action@v2.7.1
         env:
           CC_TEST_REPORTER_ID: "${{secrets.CC_TEST_REPORTER_ID}}"
+          GIT_BRANCH: $(Build.SourceBranchName)
+          GIT_COMMIT: $(Build.SourceVersion)
         with:
           coverageCommand: yarn run test --coverage
           workingDirectory: app/client
