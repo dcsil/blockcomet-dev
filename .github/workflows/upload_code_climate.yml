@@ -75,7 +75,6 @@ jobs:
           repository_root_path: ${{github.workspace}}
           collect_coverage: 'true'
           coverage_file_patterns: |
-            app/client/coverage/lcov.info:lcov
             app/server/coverage.xml:clover
 
   
