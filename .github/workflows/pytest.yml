@@ -77,12 +77,9 @@ jobs:
       - name: Run Pytest
         run: |
           cd app/server
-          poetry run coverage run -m pytest
-          poetry run coverage xml -o xml_coverage.xml
+          poetry run pytest tests --cov-report xml --cov server
 
       - name: Test & publish coverage
-        uses: paambaati/codeclimate-action@v2.7.1
+        uses: paambaati/codeclimate-action@v2.7.5
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
-        with:
-          coverageLocations: ${{github.workspace}}/server/xml_coverage.xml:clover
