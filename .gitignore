@@ -4,3 +4,4 @@
 coverage/
 lcov_coverage
 xml_coverage
+*.xml

@@ -9,4 +9,4 @@ yarn test --coverage
 
 echo "Running backend tests"
 cd ../server/
-poetry run pytest tests --cov-report xml --cov server
+poetry run pytest tests --cov-report xml:../../pycov.xml --cov server
