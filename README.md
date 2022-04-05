@@ -17,18 +17,12 @@ git clone https://github.com/dcsil/blockcomet-dev
 
 2\. Run bin/bootstrap (Ensure you are in the root folder)             
 
-This should install the languages and front & backend dependencies 
+This should install the languages & backend dependencies 
 ```
 ./bin/bootstrap
 ```
 
-3\. Go to app/client and run the start_app script 
-
-https://localhost:3001 should have the web app
-```
-./app/client/start_app
-```
-4\. Go to app/server and run the following commands: 
+3\. Go to app/server and run the following commands: 
 ```
 poetry shell
 poetry install 
@@ -41,11 +35,7 @@ For all tests (From root folder):
 ./bin/test
 ```
 
-1. webapp tests (Ensure inside client folder):
-```
-yarn test
-```
-2. server tests (Ensure inside server folder):
+1. server tests (Ensure inside server folder):
 ```
 poetry run pytest
 ```

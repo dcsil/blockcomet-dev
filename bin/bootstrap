@@ -14,16 +14,11 @@ source $HOME/.bashrc
 source $HOME/.profile
 source $HOME/.bash_profile
 
-echo "Installing FE Dependencies"
-# install dependencies for front-end 
-cd $DIR/app/client/
-yarn install 
-
 echo "Installing BE Dependencies"
 # install dependencies for back-end 
-cd $DIR/app/server 
+cd $DIR/server 
 echo "installing server dependencies"
-poetry config virtualenvs.create false
+poetry config virtualenvs.create true
 poetry install
 
 echo "############Installation Complete################"
