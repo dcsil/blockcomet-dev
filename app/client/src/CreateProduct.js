@@ -15,7 +15,6 @@ function CreateProduct() {
     let navigate = useNavigate();
     useEffect(async () => {
         const token = JSON.parse(localStorage.getItem('token'));
-        console.log("Token from local", token)
         if (token === "" || token === undefined || token === null) {
             console.log(token)
             navigate('/login')
@@ -70,12 +69,11 @@ function CreateProduct() {
         };
         axios(config)
             .then(function (response) {
-                console.log(response)
                 if (response.status == 200) {
-                    //navigate("/id/validate")
+                    const id = response.data.substring(response.data.lastIndexOf(':') + 2)
+                    navigate(`/validate/${id}`)
                 }
             }).catch(function (error) {
-                console.log("create product", error);
                 alert("Failed to Create Product, Please Try Again!")
             });
     }

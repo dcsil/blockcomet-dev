@@ -1,18 +1,16 @@
 import { Form, Container, Row, Col, Button } from 'react-bootstrap';
 import './css/App.css';
-import { useState } from 'react'
 import logo from './assets/blockcomet_logo_no_name.png';
 import { useNavigate } from "react-router-dom";
 import { BsPlayCircle } from "react-icons/bs";
 import useToken from './useToken'
 
 function Home() {
-    const [productID, setProductID] = useState('')
     const SEARCH_PLACEHOLDER = "Enter Product ID"
     const validateString = "Validate"
     const adminLoginString = "Admin Login"
+    const dashboard = "Dashboard"
     let navigate = useNavigate();
-
     const validateProduct = e => {
         e.preventDefault()
         const productID = e.target.form[0].value
@@ -29,7 +27,6 @@ function Home() {
             navigate('/login')
         }
         else {
-            // TODO: Change to dashboard when ready
             navigate('/dashboard')
         }
     }
@@ -50,7 +47,7 @@ function Home() {
                     </Row>
                 </Form>
                 <div className="home-login-btn" data-testid="admin-login-btn-container">
-                    <Button className="home-login-btn-txt" variant="primary" size="lg" data-testid="admin-login-btn" onClick={onClickAdminLogin}> {adminLoginString} <BsPlayCircle /> </Button>
+                    <Button className="home-login-btn-txt" variant="primary" size="lg" data-testid="admin-login-btn" onClick={onClickAdminLogin}> {token ? dashboard : adminLoginString} <BsPlayCircle /> </Button>
                 </div>
             </Container>
         </div>

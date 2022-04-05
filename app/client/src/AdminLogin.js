@@ -47,7 +47,7 @@ function AdminLogin() {
         const tokenResponse = await loginUser()
         if (tokenResponse.status == 200) {
             setToken(tokenResponse.data?.access_token)
-            navigate(`/create`);
+            navigate(`/dashboard`);
         }
         else {
             alert("Incorrect Username/Password, please try to login again")
@@ -69,7 +69,6 @@ function AdminLogin() {
                     </Form>
                 </div>
                 <div className="login-btn-container">
-                    {/* Temporarily redirect to create page, after auth need to shift to dashboard when created */}
                     <Button className="login-btn" variant="primary" size="lg" data-testid="login-btn" onClick={onLogin} > {loginString} </Button>
                 </div>
             </Stack>
