@@ -43,11 +43,26 @@ jobs:
         run: |
           cd app/server
           poetry install
+      
+      - name: Setup Nodejs and npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - name: Setup yarn
+        run: npm install -g yarn
+
+      - name: Install modules
+        run: |
+          cd app/client
+          yarn
 
       - name: Test with pytest and publish coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
-          workingDirectory: app/server
-          coverageCommand: poetry run coverage run -m pytest
+          coverageCommand: bin/coverage
+          coverageLocations: |
+            ${{github.workspace}}/client/coverage/lcov.info:lcov
+            ${{github.workspace}}/server/lcov_coverage:lcov
