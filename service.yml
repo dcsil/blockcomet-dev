@@ -11,7 +11,7 @@ docs:
   
 commands:
   bootstrap: bin/bootstrap
-  server: app/server/setup_server
+  server: server/setup_server
   database: bin/mongodb
   test: bin/test
   test_coverage: bin/test_coverage

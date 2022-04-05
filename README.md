@@ -1,3 +1,5 @@
+# BlockComet Backend 
+
 # BlockComet Developer's Guide
 
 ## Setup Instructions
@@ -22,11 +24,15 @@ This should install the languages & backend dependencies
 ./bin/bootstrap
 ```
 
-3\. Go to app/server and run the following commands: 
+3\. Go to server and run the following commands: 
 ```
 poetry shell
 poetry install 
 poetry run python ./src/main.py
+```
+4\. (Optional) To setup docker container for the server, go to server and run the following command: 
+```
+./setup_server.sh
 ```
 
 #### (Optional) Running tests
