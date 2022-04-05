@@ -1,6 +1,5 @@
 name: PyTest and Coverage Upload
 on: push
-
 jobs:
   test:
     runs-on: self-hosted
