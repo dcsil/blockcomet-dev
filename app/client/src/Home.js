@@ -4,6 +4,7 @@ import logo from './assets/blockcomet_logo_no_name.png';
 import { useNavigate } from "react-router-dom";
 import { BsPlayCircle } from "react-icons/bs";
 import useToken from './useToken'
+import { getLogo } from './helpers'
 
 function Home() {
     const SEARCH_PLACEHOLDER = "Enter Product ID"
@@ -36,7 +37,7 @@ function Home() {
                 <Form>
                     <Row className="align-items-center">
                         <Col className="align-items-right">
-                            <img src={logo} className="logo-img" alt="logo" data-testid="logo" />
+                            {getLogo("logo-img")}
                         </Col>
                         <Col>
                             <Form.Control className="search-bar" size="lg" type="text" data-testid="search-bar" placeholder={SEARCH_PLACEHOLDER} />
