@@ -4,8 +4,7 @@ tools:
   ci: https://github.com/dcsil/blockcomet-dev/actions
 
 services:
-  production: https://blockcometwebsite-6dkam7pfeq-ue.a.run.app
-  production_server: https://blockcometapi-6dkam7pfeq-uc.a.run.app
+  production: https://blockcometapi-6dkam7pfeq-uc.a.run.app
 
 docs:
   getting_started: https://github.com/dcsil/blockcomet-dev/blob/main/README.md
@@ -13,6 +12,6 @@ docs:
 commands:
   bootstrap: bin/bootstrap
   server: app/server/setup_server
-  webapp: app/client/start_app
   database: bin/mongodb
   test: bin/test
+  test_coverage: bin/test_coverage
