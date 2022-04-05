@@ -27,4 +27,3 @@ jobs:
         with:
           coverageCommand: yarn run test --coverage
           workingDirectory: app/client
-          verifyDownload: true  
