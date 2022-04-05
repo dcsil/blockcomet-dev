@@ -33,7 +33,7 @@ jobs:
           repository_root_path: ${{github.workspace}}
           collect_coverage: 'true'
           coverage_file_patterns: |
-            coverage/lcov.info:lcov
+            app/client/coverage/lcov.info:lcov
       
 
       # - name: Test & publish coverage
