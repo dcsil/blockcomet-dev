@@ -30,12 +30,12 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          repository_root_path: ${{github.workspace}}/app/client
+          repository_root_path: ${{github.workspace}}
           collect_coverage: 'true'
           coverage_file_patterns: |
             coverage/lcov.info:lcov
       
-      
+
       # - name: Test & publish coverage
       #   uses: paambaati/codeclimate-action@v3.0.0
       #   env:
