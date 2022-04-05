@@ -29,7 +29,7 @@ function CreateProduct() {
     const [dataFields, setDataFields] = useState([{ "key": "Brand", "value": "" }, {
         "key": "Product Name", "value": ""
     }, { "key": "Product ID", "value": "" },
-    { "key": "Date of Purchase", "value": "" }])
+    { "key": "Date of Production", "value": "" }])
 
     const handleFieldChange = (index, event) => {
         let data = [...dataFields]
