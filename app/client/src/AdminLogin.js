@@ -8,6 +8,28 @@ import axios from 'axios'
 import { serverUrl } from './config'
 import qs from 'qs';
 import useToken from './useToken'
+import { getLogo } from './helpers'
+
+const getFormFields = (setUserName, setPassword) => {
+    const data = [{
+        type: "text",
+        testId: "username-bar",
+        placeholder: "Username",
+        onChange: event => setUserName(event.target.value)
+    }, {
+        type: "password",
+        testId: "password-bar",
+        placeholder: "Password",
+        onChange: event => setPassword(event.target.value),
+    }]
+    return (
+        <Form>
+            {data.map((input) =>
+                <Form.Control className="search-bar" size="lg" type={input.type} data-testid={input.testId} placeholder={input.placeholder} onChange={input.onChange} />
+            )}
+        </Form>
+    )
+}
 
 function AdminLogin() {
     const [username, setUserName] = useState('')
@@ -60,13 +82,10 @@ function AdminLogin() {
                 alignItems="center"
                 spacing={3} className="admin-login-stack">
                 <div className="login-logo">
-                    <img src={logo} className="login-logo-img" alt="logo" data-testid="logo" />
+                    {getLogo("login-logo-img")}
                 </div>
                 <div className="login-form">
-                    <Form>
-                        <Form.Control className="search-bar" size="lg" type="text" data-testid="username-bar" placeholder="Username" onChange={event => setUserName(event.target.value)} />
-                        <Form.Control className="search-bar" size="lg" type="password" data-testid="password-bar" placeholder="Password" onChange={event => setPassword(event.target.value)} />
-                    </Form>
+                    {getFormFields(setUserName, setPassword)}
                 </div>
                 <div className="login-btn-container">
                     <Button className="login-btn" variant="primary" size="lg" data-testid="login-btn" onClick={onLogin} > {loginString} </Button>
