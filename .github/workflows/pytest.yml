@@ -63,9 +63,9 @@ jobs:
       - name: Test with pytest and publish coverage
         uses: paambaati/codeclimate-action@v2.7.1
         env:
-          CC_TEST_REPORTER_ID: "${{secrets.CC_TEST_REPORTER_ID}}"
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
           coverageCommand: bash ./bin/test_coverage
           coverageLocations: |
-            "${{github.workspace}}/client/coverage/lcov.info:lcov"
-            "${{github.workspace}}/server/xml_coverage.xml:clover"
+            ${{github.workspace}}/client/coverage/lcov.info:lcov
+            ${{github.workspace}}/server/xml_coverage.xml:clover
