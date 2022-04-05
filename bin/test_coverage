@@ -9,4 +9,5 @@ yarn test --coverage
 
 echo "Running backend tests"
 cd ../server/
-poetry run coverage lcov -o lcov_coverage pytest
+poetry run coverage run -m pytest
+poetry run coverage xml -o xml_coverage
