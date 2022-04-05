@@ -68,4 +68,4 @@ jobs:
           coverageCommand: bash ./bin/test_coverage
           coverageLocations: |
             "${{github.workspace}}/client/coverage/lcov.info:lcov"
-            "${{github.workspace}}/server/xml_coverage:clover"
+            "${{github.workspace}}/server/xml_coverage.xml:clover"
