@@ -25,7 +25,7 @@ jobs:
           cd app/client
           yarn test
       
-      - name: Test and publish coverage
+      - name: Test & publish coverage
         uses: paambaati/codeclimate-action@v2.7.1
         env:
           CC_TEST_REPORTER_ID: "${{secrets.CC_TEST_REPORTER_ID}}"
