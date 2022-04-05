@@ -20,16 +20,14 @@ jobs:
           cd app/client
           yarn
       
-      - name: Run tests
+      - name: Run frontend tests
         run: |
           cd app/client
-          yarn test
+          yarn test --coverage
       
       - name: Test & publish coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
-          coverageCommand: yarn run test --coverage
-          workingDirectory: app/client
-          debug: true
+          coverageLocation: ${{github.workspace}}/client/coverage/lcov.info:lcov
