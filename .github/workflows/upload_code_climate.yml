@@ -68,7 +68,7 @@ jobs:
         run: bin/test_coverage
 
       - name: Upload coverage
-        uses: caffco/code-climate-github-action@v1.0.0
+        uses: caffco/code-climate-github-action@v0.0.1-alpha.7
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
