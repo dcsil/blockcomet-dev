@@ -1,7 +1,6 @@
-import { Form, Button } from 'react-bootstrap';
 import './css/Dashboard.css';
 import { useState, useEffect } from 'react'
-import logo from './assets/blockcomet_logo_no_name.png';
+import paginationFactory from 'react-bootstrap-table2-paginator';
 import { useNavigate } from "react-router-dom";
 import useToken from './useToken'
 import axios from 'axios'
@@ -52,7 +51,8 @@ function Dashboard() {
     const columns = [
         { text: 'ID', dataField: 'Product ID' },
         { text: 'Brand', dataField: 'Brand' },
-        { text: 'Product Name', dataField: 'Product Name' }
+        { text: 'Product Name', dataField: 'Product Name' },
+        { text: 'Date', dataField: 'Date of Purchase' }
       ];
 
     const loginString = "Log In"
@@ -64,7 +64,7 @@ function Dashboard() {
                 <h5 onClick={() => {return navigate('/create')}}> Add Product </h5>
                 <h5> Update Product </h5>
             </div>
-            <BootstrapTable striped bordered hover columns={columns} data={products} keyField='ID' />
+            <BootstrapTable striped bordered hover columns={columns} data={products} keyField='ID' pagination={ paginationFactory() }/>
         </div>
     )
 }
