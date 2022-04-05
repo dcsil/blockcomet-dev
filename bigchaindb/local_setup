@@ -2,7 +2,6 @@
 echo "Installing BigChainDB"
 
 sudo apt install -y python3-pip libssl-dev
-
 sudo pip3 install -U pip
 
 # Take latest version from here: https://pypi.org/project/BigchainDB/#history
