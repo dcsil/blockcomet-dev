@@ -70,11 +70,15 @@ jobs:
       #       ${{github.workspace}}/client/coverage/lcov.info:lcov
       #       ${{github.workspace}}/server/xml_coverage.xml:clover
 
+      - name: Run Pytest
+        run: |
+          cd app/server
+          poetry run coverage run -m pytest
+          poetry run coverage xml -o xml_coverage.xml
+
       - name: Test & publish coverage
         uses: paambaati/codeclimate-action@v2.7.1
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
-          coverageCommand: poetry run coverage run -m pytest
-          workingDirectory: app/server
-          debug: true
+          coverageLocations: ${{github.workspace}}/server/xml_coverage.xml:clover
