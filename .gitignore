@@ -1,4 +1,6 @@
 **/node_modules
-poetry.lock
-yarn.lock
 *.pytest_cache
+*.coverage
+coverage/
+lcov_coverage
+xml_coverage
