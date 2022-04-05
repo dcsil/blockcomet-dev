@@ -39,10 +39,10 @@ jobs:
           pwd
           poetry config virtualenvs.create false
 
-      - name: Install Dependencies
-        run: |
-          cd app/server
-          poetry install
+      # - name: Install Dependencies
+      #   run: |
+      #     cd app/server
+      #     poetry install
       
       - name: Setup Nodejs and npm
         uses: actions/setup-node@v2
@@ -52,10 +52,10 @@ jobs:
       - name: Setup yarn
         run: npm install -g yarn
 
-      - name: Install modules
-        run: |
-          cd app/client
-          yarn
+      # - name: Install modules
+      #   run: |
+      #     cd app/client
+      #     yarn
       
       - name: Check PWD
         run: pwd
