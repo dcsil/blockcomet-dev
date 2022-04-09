@@ -24,13 +24,18 @@ This should install the languages & backend dependencies
 ./bin/bootstrap
 ```
 
-3\. Go to server and run the following commands: 
+3\. Run the following commands: 
 ```
+cd server
 poetry shell
-poetry install 
-poetry run python ./src/main.py
 ```
-4\. (Optional) To setup docker container for the server, go to server and run the following command: 
+Then, run:
+```
+poetry install
+poetry run uvicorn server.main:app --host 0.0.0.0 --port 8080
+```
+
+4\. (Optional) To setup docker container for the server, run the following command (from the server directory): 
 ```
 ./setup_server.sh
 ```
