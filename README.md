@@ -39,6 +39,7 @@ poetry run uvicorn server.main:app --host 0.0.0.0 --port 8080
 ```
 ./setup_server.sh
 ```
+Container should now be running on http://localhost:5001/
 
 #### (Optional) Running tests
 For all tests (From root folder):
