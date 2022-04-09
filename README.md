@@ -42,15 +42,15 @@ poetry run uvicorn server.main:app --host 0.0.0.0 --port 8080
 Container should now be running on http://localhost:5001/
 
 #### (Optional) Running tests
-For all tests (From root folder):
+For all backend tests (From root folder):
 ``` 
 ./bin/test
 ```
+For all backend tests with coverage stats (From root folder):
+``` 
+./bin/test_coverage
+```
 
-1. server tests (Ensure inside server folder):
-```
-poetry run pytest
-```
 
 ## Resources
 [BlockComet - Google Drive](https://drive.google.com/drive/folders/1Y2Rrer1_6Pn5j8HI7jxWZaM5FnN1wZ13)
